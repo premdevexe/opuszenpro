@@ -76,7 +76,7 @@ export const ModelsMatrix: React.FC = () => {
           Every Claude Model. <span className="text-gradient-orange">Zero Tier Gating</span>.
         </h2>
         <p className="text-base sm:text-lg text-slate-400 mt-4 leading-relaxed">
-          Both 5× and 20× Opuszyra plans unlock the complete Claude family on a per-request basis with identical low latency.
+          Both 5× and 20× OpusZenvix plans unlock the complete Claude family on a per-request basis with identical low latency.
         </p>
       </div>
 

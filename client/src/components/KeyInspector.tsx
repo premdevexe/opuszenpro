@@ -83,6 +83,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
     try {
       if (forceFresh && typeof window !== 'undefined') {
         const safeToken = target.slice(0, 48);
+        localStorage.removeItem(`opuszenvix_window_anchor_${safeToken}`);
         localStorage.removeItem(`opuszyra_window_anchor_${safeToken}`);
       }
       const data = await checkKey(target);

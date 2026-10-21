@@ -64,7 +64,7 @@ export const StatusPage: React.FC<{ onOpenCheckUsage?: () => void }> = ({ onOpen
               <span>All 15 Claude Gateway Nodes Operational</span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-              Opuszyra System Status
+              OpusZenvix System Status
             </h1>
             <p className="text-sm text-slate-400 mt-2">
               Real-time uptime, system availability, and streaming gateway health.

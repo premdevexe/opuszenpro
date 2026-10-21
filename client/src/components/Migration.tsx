@@ -77,12 +77,12 @@ export const Migration: React.FC = () => {
               <div className="flex items-center gap-2 border-b border-emerald-500/20 bg-emerald-950/20 px-4 py-2.5">
                 <span className="h-2 w-2 rounded-full bg-emerald-400/80 animate-ping"></span>
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-emerald-400 font-semibold">
-                  After — Opuszyra Gateway
+                  After — OpusZenvix Gateway
                 </span>
               </div>
               <div className="overflow-x-auto px-5 py-4 font-mono text-[13px] text-slate-400">
                 <span>base_url = </span>
-                <span className="text-emerald-400 font-semibold">"https://api.opuszyra.live/v1"</span>
+                <span className="text-emerald-400 font-semibold">"https://api.opuszenvix.live/v1"</span>
                 <span className="block mt-1 text-[11px] text-emerald-400/80 font-mono">
                   ✓ Instant 1M context, 5h rolling allowance &amp; zero waitlist
                 </span>

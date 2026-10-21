@@ -211,13 +211,13 @@ export const PricingModal: React.FC<PricingModalProps> = ({
           <div className="flex items-center gap-3">
             <img
               src="/logo.png"
-              alt="Opuszyra Logo"
+              alt="OpusZenvix Logo"
               width="44"
               height="44"
               className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
             />
             <div>
-              <h2 id="pricing-modal-title" className="text-lg font-bold text-white">Opuszyra Plans &amp; Activation</h2>
+              <h2 id="pricing-modal-title" className="text-lg font-bold text-white">OpusZenvix Plans &amp; Activation</h2>
               <p className="text-xs text-stone-400">Instant API keys · UPI (INR) &amp; WhatsApp Onboarding</p>
             </div>
           </div>

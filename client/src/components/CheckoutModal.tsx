@@ -123,7 +123,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             <div className="flex items-center gap-3 mb-6">
               <img
                 src="/logo.png"
-                alt="Opuszyra Logo"
+                alt="OpusZenvix Logo"
                 width="56"
                 height="56"
                 className="w-14 h-14 object-contain drop-shadow-[0_2px_12px_rgba(234,88,12,0.35)]"
@@ -248,7 +248,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             {/* Key Presentation Box */}
             <div className="p-4 rounded-2xl bg-[#141312] border border-emerald-500/30 text-left space-y-2">
               <div className="flex items-center justify-between text-[11px] text-stone-400 font-mono">
-                <span>YOUR OPUSZYRA API KEY</span>
+                <span>YOUR OPUSZENVIX API KEY</span>
                 <span className="text-emerald-400 font-bold">Status: Active</span>
               </div>
               <div className="p-2.5 rounded-lg bg-[#0a0a09] border border-white/5 font-mono text-xs text-amber-300 break-all select-all">
@@ -264,7 +264,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             </div>
 
             <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] text-stone-400 text-left font-mono">
-              💡 Instant Setup: <code className="text-orange-400 font-bold">npx opuszyra</code> (or export ANTHROPIC_BASE_URL=https://api.opuszyra.live/v1)
+              💡 Instant Setup: <code className="text-orange-400 font-bold">npx opuszenvix</code> (or export ANTHROPIC_BASE_URL=https://api.opuszenvix.live/v1)
             </div>
 
             <button

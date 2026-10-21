@@ -106,7 +106,8 @@ export async function generateKey(name: string, tier: PlanTier): Promise<ApiKey>
 export function getAnchoredWindowTimer(token: string, candidateResetStr?: string) {
   const now = Date.now();
   const safeToken = token.trim().slice(0, 48);
-  const storageKey = `opuszyra_window_anchor_${safeToken}`;
+  const storageKey = `opuszenvix_window_anchor_${safeToken}`;
+  const legacyStorageKey = `opuszyra_window_anchor_${safeToken}`;
 
   let resetTime = 0;
   const candidateTime = candidateResetStr ? new Date(candidateResetStr).getTime() : 0;
@@ -123,7 +124,9 @@ export function getAnchoredWindowTimer(token: string, candidateResetStr?: string
     }
   } else {
     // Check localStorage fallback
-    const anchorStr = typeof window !== 'undefined' ? localStorage.getItem(storageKey) : null;
+    const anchorStr = typeof window !== 'undefined'
+      ? (localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey))
+      : null;
     const storedTime = anchorStr ? new Date(anchorStr).getTime() : 0;
     if (storedTime && storedTime > now) {
       resetTime = storedTime;
@@ -367,6 +370,7 @@ export async function deleteKey(id: string): Promise<void> {
 export async function resetKeyWindow(id: string, keyToken?: string): Promise<void> {
   if (keyToken && typeof window !== 'undefined') {
     const safeToken = keyToken.trim().slice(0, 48);
+    localStorage.removeItem(`opuszenvix_window_anchor_${safeToken}`);
     localStorage.removeItem(`opuszyra_window_anchor_${safeToken}`);
   }
   await safeJsonFetch(`${API_BASE}/keys/${id}/reset-window`, { method: 'POST' });
@@ -427,7 +431,7 @@ export async function streamClaudeMessage({
       body: JSON.stringify({
         model,
         messages: [{ role: 'user', content: prompt }],
-        system: system || 'You are an advanced Claude AI assistant accessible via Opuszyra API gateway.',
+        system: system || 'You are an advanced Claude AI assistant accessible via OpusZenvix API gateway.',
         stream: true,
       }),
     });

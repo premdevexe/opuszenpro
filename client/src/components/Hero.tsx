@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeModelIdx, setActiveModelIdx] = useState(0);
   const [copied, setCopied] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullCommand = 'npx opuszyra';
+  const fullCommand = 'npx opuszenvix';
 
   // Typing effect on terminal
   useEffect(() => {
@@ -182,7 +182,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <button
                       onClick={handleCopy}
                       title={copied ? 'Copied to clipboard' : 'Copy command to clipboard'}
-                      aria-label="Copy npx opuszyra command to clipboard"
+                      aria-label="Copy npx opuszenvix command to clipboard"
                       className="ml-2 p-1 text-slate-400 hover:text-white rounded transition active:scale-95"
                     >
                       {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -194,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <span className="text-slate-400">export </span>
                     <span className="text-brand-300">ANTHROPIC_BASE_URL</span>
                     <span className="text-slate-500">=</span>
-                    <span className="text-amber-300">"https://api.opuszyra.live/v1"</span>
+                    <span className="text-amber-300">"https://api.opuszenvix.live/v1"</span>
                   </p>
 
                   <div className="pt-2 border-t border-white/5 text-[12px] text-slate-400 space-y-1">

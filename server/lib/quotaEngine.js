@@ -1,5 +1,5 @@
 /**
- * OpusZyra Authoritative Quota & Rolling 5-Hour Window Calculation Engine
+ * OpusZenvix Authoritative Quota & Rolling 5-Hour Window Calculation Engine
  * 
  * Provides:
  * 1. Strict extraction of provider-reported input/prompt & output/completion tokens (0-safe).

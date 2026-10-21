@@ -4,7 +4,7 @@ export type Theme = 'dark' | 'light' | 'dim';
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = (localStorage.getItem('opuszyra_theme') || localStorage.getItem('opusmax_theme')) as Theme | null;
+    const saved = (localStorage.getItem('opuszenvix_theme') || localStorage.getItem('opuszyra_theme') || localStorage.getItem('opusmax_theme')) as Theme | null;
     if (saved === 'light' || saved === 'dark' || saved === 'dim') return saved;
     return 'dark';
   });
@@ -20,7 +20,7 @@ export function useTheme() {
       root.classList.add('dark');
     }
     root.setAttribute('data-theme', theme);
-    localStorage.setItem('opuszyra_theme', theme);
+    localStorage.setItem('opuszenvix_theme', theme);
   }, [theme]);
 
   const toggleTheme = (e?: React.MouseEvent) => {

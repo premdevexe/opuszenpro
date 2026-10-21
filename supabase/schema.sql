@@ -1,5 +1,5 @@
--- =========================================================================
--- OPUSZYRA POSTGRESQL SCHEMA FOR SUPABASE
+﻿-- =========================================================================
+-- OpusZenvix POSTGRESQL SCHEMA FOR SUPABASE
 -- Compatible with Supabase SQL Editor and local PostgreSQL instances
 -- =========================================================================
 
@@ -126,3 +126,4 @@ INSERT INTO public.api_keys (
     894
 )
 ON CONFLICT (key_token) DO NOTHING;
+

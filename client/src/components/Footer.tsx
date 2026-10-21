@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenCheckKey,
   onNavigateSection,
 }) => {
-  const whatsappUrl = getWhatsAppSupportUrl("Hi! I have an inquiry about Opuszyra.");
+  const whatsappUrl = getWhatsAppSupportUrl("Hi! I have an inquiry about OpusZenvix.");
   const supportTel = getSupportTelUrl();
   const displayPhone = getDisplaySupportPhoneNumber();
 
@@ -30,13 +30,13 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="flex items-center gap-3">
               <img
                 src="/logo.png"
-                alt="Opuszyra Logo"
+                alt="OpusZenvix Logo"
                 width="44"
                 height="44"
                 className="h-10 w-10 sm:h-11 sm:w-11 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
               />
               <span className="text-[18px] font-bold tracking-tight text-white font-mono">
-                Opus<span className="text-brand-500">zyra</span>
+                Opus<span className="text-brand-500">zenvix</span>
               </span>
             </div>
             <p className="max-w-sm text-xs leading-relaxed text-slate-400">
@@ -152,12 +152,12 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a
-                  href="https://opuszyra.live/"
+                  href="https://opuszenvix.live/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1 text-brand-400 hover:text-brand-300"
                 >
-                  <span>opuszyra.live</span>
+                  <span>opuszenvix.live</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
               </li>
@@ -188,7 +188,7 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.08] pt-8 sm:flex-row text-xs">
-          <p>© {new Date().getFullYear()} Opuszyra. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} OpusZenvix. All rights reserved.</p>
           <p className="flex items-center gap-1 font-mono text-[11px] text-slate-400">
             Engineered with React, Tailwind CSS, Node.js &amp; Supabase
           </p>

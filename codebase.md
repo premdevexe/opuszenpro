@@ -1,6 +1,6 @@
-# Opuszyra Codebase & Project Architecture Specification
+﻿# OpusZenvix Codebase & Project Architecture Specification
 
-> **Opuszyra** is an enterprise-grade Anthropic-compatible AI Proxy, API Gateway, and middle-man routing platform built with **React (Vite)**, **Tailwind CSS**, **Node.js (Express)**, and **Supabase (PostgreSQL)**.
+> **OpusZenvix** is an enterprise-grade Anthropic-compatible AI Proxy, API Gateway, and middle-man routing platform built with **React (Vite)**, **Tailwind CSS**, **Node.js (Express)**, and **Supabase (PostgreSQL)**.
 > It delivers drop-in Anthropic and OpenAI compatibility, 5-hour rolling token capacity windows, zero-latency unbuffered Server-Sent Events (SSE) streaming, 100% free prompt caching reads, real-time key telemetry inspection, automated TRC-20 crypto checkout, and dual-mode database operation (in-memory mock fallback & live Supabase sync).
 
 ---
@@ -35,7 +35,7 @@
 
 ## 1. Executive Summary & Project Overview
 
-Opuszyra acts as a **smart middle-man proxy** between developers/clients and upstream Anthropic-compatible AI endpoints (such as `https://api.opuszen.shop`). It addresses common pain points with modern foundation models:
+OpusZenvix acts as a **smart middle-man proxy** between developers/clients and upstream Anthropic-compatible AI endpoints (such as `https://api.opuszen.shop`). It addresses common pain points with modern foundation models:
 
 - **Drop-in Compatibility**: Exposes `/v1/messages` and `/v1/chat/completions` compliant with the official Anthropic Python/TypeScript SDKs, OpenAI SDKs, Claude Code CLI, Cursor, Windsurf, Cline, and Roo Code.
 - **5-Hour Rolling Reset Windows**: Replaces rigid 24-hour daily quotas or monthly cliffs with a rolling 5-hour window mechanism that tracks capacity from the first request in a cycle.
@@ -52,13 +52,13 @@ Opuszyra acts as a **smart middle-man proxy** between developers/clients and ups
 ```
 +-----------------------------------------------------------------------------------+
 |                                 CLIENT CLIENTS                                    |
-|   Claude Code CLI  |  Cursor IDE  |  Python/TS SDK  |  Opuszyra React UI (Vite)  |
+|   Claude Code CLI  |  Cursor IDE  |  Python/TS SDK  |  OpusZenvix React UI (Vite)  |
 +-----------------------------------------------------------------------------------+
                                          |
                                          | HTTP / SSE
                                          v
 +-----------------------------------------------------------------------------------+
-|                        OPUSZYRA MIDDLE-MAN GATEWAY (Express)                      |
+|                        OpusZenvix MIDDLE-MAN GATEWAY (Express)                      |
 |                                                                                   |
 |  [Middleware]: CORS, 50MB JSON Parser, Morgan Logging                             |
 |                                                                                   |
@@ -86,7 +86,7 @@ Opuszyra acts as a **smart middle-man proxy** between developers/clients and ups
 ## 3. Repository File & Directory Structure
 
 ```
-Opuszyra/
+OpusZenvix/
 ├── .agents/                        # Specialized agent and skill configurations
 ├── .env.example                    # Global environment template
 ├── .gitignore                      # Git exclusion rules
@@ -102,7 +102,7 @@ Opuszyra/
 │   └── index.js                    # Serverless root entry point restoring matched paths
 │
 ├── bin/                            # Interactive Command-Line Tools
-│   └── cli.js                      # `npx opuszyra` configuration wizard
+│   └── cli.js                      # `npx OpusZenvix` configuration wizard
 │
 ├── client/                         # Frontend Application (React 18 + Vite + Tailwind CSS)
 │   ├── dist/                       # Production bundle build destination
@@ -399,7 +399,7 @@ Central TypeScript definitions ensuring end-to-end type safety:
 
 ## 7. Database Architecture & Supabase Schema (`supabase/`)
 
-The PostgreSQL schema is defined in [`supabase/schema.sql`](file:///d:/Projects/Opuszyra/supabase/schema.sql) and is fully compatible with Supabase SQL Editor:
+The PostgreSQL schema is defined in [`supabase/schema.sql`](file:///d:/Projects/OpusZenvix/supabase/schema.sql) and is fully compatible with Supabase SQL Editor:
 
 ```sql
 -- Core Schema Structure
@@ -464,22 +464,22 @@ CREATE TABLE IF NOT EXISTS public.crypto_orders (
 
 ## 8. CLI Tooling & Developer Workflows (`bin/cli.js`)
 
-Opuszyra includes a zero-dependency interactive setup wizard runnable with `npx`:
+OpusZenvix includes a zero-dependency interactive setup wizard runnable with `npx`:
 
 ```bash
-npx opuszyra
+npx OpusZenvix
 ```
 
 ### Features
 
-1. **ASCII Brand Banner**: Displays the Opuszyra terminal banner with active gateway endpoints.
+1. **ASCII Brand Banner**: Displays the OpusZenvix terminal banner with active gateway endpoints.
 2. **Key Input Validation**: Prompts for `opm-live-...` key token.
 3. **Automated Configuration Targets**:
    - **Claude Code CLI**: Automatically writes or updates `~/.claude/settings.json`:
      ```json
      {
        "env": {
-         "ANTHROPIC_BASE_URL": "https://api.opuszyra.live/v1",
+         "ANTHROPIC_BASE_URL": "https://api.OpusZenvix.live/v1",
          "ANTHROPIC_API_KEY": "opm-live-your_key"
        }
      }
@@ -529,7 +529,7 @@ import anthropic
 
 client = anthropic.Anthropic(
     api_key="opm-live-5x-9f8a3c2e1b4d7f0a",
-    base_url="https://api.opuszyra.live/v1"  # Or http://localhost:5000/v1
+    base_url="https://api.OpusZenvix.live/v1"  # Or http://localhost:5000/v1
 )
 
 message = client.messages.create(
@@ -550,7 +550,7 @@ import Anthropic from '@anthropic-ai/sdk';
 
 const anthropic = new Anthropic({
   apiKey: 'opm-live-5x-9f8a3c2e1b4d7f0a',
-  baseURL: 'https://api.opuszyra.live/v1',
+  baseURL: 'https://api.OpusZenvix.live/v1',
 });
 
 async function run() {
@@ -574,7 +574,7 @@ run();
 
 ```bash
 # Export environment variables
-export ANTHROPIC_BASE_URL="https://api.opuszyra.live/v1"
+export ANTHROPIC_BASE_URL="https://api.OpusZenvix.live/v1"
 export ANTHROPIC_API_KEY="opm-live-5x-9f8a3c2e1b4d7f0a"
 
 # Launch Claude Code
@@ -587,13 +587,13 @@ claude
 2. Navigate to **Features > Models**.
 3. Under **Anthropic API Key**:
    - Check **Override Anthropic Base URL**.
-   - Set URL: `https://api.opuszyra.live/v1`
+   - Set URL: `https://api.OpusZenvix.live/v1`
    - Paste Key: `opm-live-20x-8d7e6f5c4b3a2109`
 
 ### Raw cURL Request
 
 ```bash
-curl -X POST https://api.opuszyra.live/v1/messages \
+curl -X POST https://api.OpusZenvix.live/v1/messages \
   -H "Content-Type: application/json" \
   -H "x-api-key: opm-live-5x-9f8a3c2e1b4d7f0a" \
   -H "anthropic-version: 2023-06-01" \
@@ -615,7 +615,7 @@ curl -X POST https://api.opuszyra.live/v1/messages \
 |---|---|---|---|
 | `PORT` | Server | `5000` | Port for Express backend listener |
 | `UPSTREAM_API_BASE` | Server | `https://api.opuszen.shop` | Target upstream AI gateway |
-| `API_DOMAIN` | Server | `https://api.opuszyra.live` | Public domain for middle-man documentation & CLI |
+| `API_DOMAIN` | Server | `https://api.OpusZenvix.live` | Public domain for middle-man documentation & CLI |
 | `UPSTREAM_API_KEY` | Server | `""` (Optional) | Master key override sent to upstream if configured |
 | `SUPABASE_URL` | Server / Client | `""` | Supabase project URL |
 | `SUPABASE_ANON_KEY` | Server / Client | `""` | Supabase anonymous public key |
@@ -655,3 +655,4 @@ npm run build
 npm start
 ```
 The application will be served on port `5000`, routing both the API endpoints and the frontend client.
+
