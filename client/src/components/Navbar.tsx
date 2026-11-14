@@ -105,17 +105,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           onClick={() => go('home')}
           className="inline-flex items-center gap-2.5 sm:gap-3 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-lg p-1"
-          aria-label="OpusZenvix home"
+          aria-label="OpusZenPro home"
         >
           <img
             src="/logo.png"
-            alt="OpusZenvix Logo"
+            alt="OpusZenPro Logo"
             width="44"
             height="44"
             className="h-9 w-9 sm:h-10 sm:w-10 object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(234,88,12,0.35)]"
           />
           <span className="text-[17px] sm:text-[18px] font-bold tracking-tight text-white font-mono">
-            Opus<span className="text-brand-500">zenvix</span>
+            Opus<span className="text-brand-500">zenpro</span>
           </span>
         </button>
 

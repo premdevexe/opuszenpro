@@ -5,9 +5,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Ensure .env is loaded reliably across root and server runtime working directories
+// Ensure .env or env is loaded reliably across root and server runtime working directories
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../env') });
+dotenv.config({ path: path.resolve(__dirname, '../../env') });
 dotenv.config();
 
 /**
@@ -59,5 +61,19 @@ export function getSupportPhoneNumber() {
     return '';
   }
   return number.trim();
+}
+
+export const SITE_NAME = 'OpusZenPro';
+export const BRAND_NAME = 'OpusZenPro';
+
+/**
+ * Returns the public gateway domain for OpusZenPro.
+ */
+export function getApiDomain() {
+  const raw = process.env.API_DOMAIN;
+  if (raw && typeof raw === 'string' && raw.trim()) {
+    return raw.trim().replace(/\/+$/, '');
+  }
+  return 'https://api.opuszenpro.live';
 }
 

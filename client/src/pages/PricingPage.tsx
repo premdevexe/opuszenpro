@@ -64,7 +64,7 @@ const COMPARISON_ROWS = [
 ];
 
 export const PricingPage: React.FC<PricingPageProps> = ({ onSelectPlan, onOpenCheckKey }) => {
-  const whatsappUrl = getWhatsAppSupportUrl("Hi Admin! I want to subscribe to an OpusZenvix API plan.");
+  const whatsappUrl = getWhatsAppSupportUrl("Hi Admin! I want to subscribe to an OpusZenPro API plan.");
 
   return (
     <div className="min-h-screen py-10 md:py-16 pb-28 animate-fadeIn transition-colors text-stone-900 dark:text-[#F5F2EB]">
@@ -306,7 +306,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onSelectPlan, onOpenCh
               <span>Architectural Advantage</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Why Engineers Switch to OpusZenvix
+              Why Engineers Switch to OpusZenPro
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-2">
               Continuous rolling throughput, zero cliff lockouts, and 100% free prompt caching reads.
@@ -322,7 +322,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onSelectPlan, onOpenCh
                       Capability
                     </th>
                     <th className="py-4 px-6 font-black text-[#EA580C] uppercase tracking-wider text-[11px] bg-orange-500/5">
-                      OpusZenvix Gateway ⚡
+                      OpusZenPro Gateway ⚡
                     </th>
                     <th className="py-4 px-6 font-semibold text-stone-500 dark:text-stone-400 uppercase tracking-wider text-[11px]">
                       Claude Pro ($20/mo)

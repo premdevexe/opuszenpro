@@ -1,5 +1,5 @@
 /**
- * OpusZenvix Authoritative Quota & Rolling 5-Hour Window Calculation Engine
+ * OpusZenPro Authoritative Quota & Rolling 5-Hour Window Calculation Engine
  * 
  * Provides:
  * 1. Strict extraction of provider-reported input/prompt & output/completion tokens (0-safe).
@@ -261,7 +261,8 @@ export async function calculateSlidingWindowUsage(keyRecord, options = {}) {
   let isQuotaVerified = false;
 
   const isLegacyStaleOverride = (t, val) =>
-    t === '20x' && (val === 100000000 || val === 200000000);
+    (t === '20x' && (val === 100000000 || val === 200000000)) ||
+    (t === '5x' && (val === 25000000 || val === 50000000));
 
   if (typeof options.upstreamData?.windowTokensLimit === 'number' && options.upstreamData.windowTokensLimit > 0) {
     if (!isLegacyStaleOverride(tier, options.upstreamData.windowTokensLimit)) {
@@ -380,9 +381,9 @@ export async function calculateSlidingWindowUsage(keyRecord, options = {}) {
   const isWindowExpired = keyRecord?.window_resets_at && new Date(keyRecord.window_resets_at).getTime() <= now.getTime();
 
   if (!isUsageVerified) {
-    if (!isWindowExpired && typeof keyRecord?.window_tokens_used === 'number' && keyRecord.window_tokens_used > 0) {
+    if (!isWindowExpired && typeof keyRecord?.window_tokens_used === 'number' && keyRecord.window_tokens_used >= 0) {
       usedTokens = keyRecord.window_tokens_used;
-      usageSource = 'database';
+      usageSource = keyRecord.window_tokens_used === 0 && (keyRecord.total_requests === 0 || keyRecord.total_requests === undefined) ? 'new_key' : 'database';
       isUsageVerified = true;
     } else if (
       (keyRecord?.total_requests === 0 || keyRecord?.total_requests === undefined) &&

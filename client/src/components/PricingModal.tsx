@@ -139,7 +139,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
         status: 'active',
         rate_limit_rpm: selectedTier === '20x' ? 120 : 60,
         rate_limit_tpm: selectedTier === '20x' ? 1000000 : 400000,
-        window_token_limit: selectedTier === '20x' ? 200000000 : 25000000,
+        window_token_limit: selectedTier === '20x' ? 20000000 : (selectedTier === '5x' ? 5000000 : 25000000),
         window_tokens_used: 0,
         window_started_at: new Date().toISOString(),
         window_resets_at: new Date(Date.now() + 5 * 60 * 60 * 1000).toISOString(),
@@ -211,13 +211,13 @@ export const PricingModal: React.FC<PricingModalProps> = ({
           <div className="flex items-center gap-3">
             <img
               src="/logo.png"
-              alt="OpusZenvix Logo"
+              alt="OpusZenPro Logo"
               width="44"
               height="44"
               className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
             />
             <div>
-              <h2 id="pricing-modal-title" className="text-lg font-bold text-white">OpusZenvix Plans &amp; Activation</h2>
+              <h2 id="pricing-modal-title" className="text-lg font-bold text-white">OpusZenPro Plans &amp; Activation</h2>
               <p className="text-xs text-stone-400">Instant API keys · UPI (INR) &amp; WhatsApp Onboarding</p>
             </div>
           </div>

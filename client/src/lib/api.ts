@@ -106,8 +106,9 @@ export async function generateKey(name: string, tier: PlanTier): Promise<ApiKey>
 export function getAnchoredWindowTimer(token: string, candidateResetStr?: string) {
   const now = Date.now();
   const safeToken = token.trim().slice(0, 48);
-  const storageKey = `opuszenvix_window_anchor_${safeToken}`;
-  const legacyStorageKey = `opuszyra_window_anchor_${safeToken}`;
+  const storageKey = `opuszenpro_window_anchor_${safeToken}`;
+  const legacyStorageKey1 = `opuszenvix_window_anchor_${safeToken}`;
+  const legacyStorageKey2 = `opuszyra_window_anchor_${safeToken}`;
 
   let resetTime = 0;
   const candidateTime = candidateResetStr ? new Date(candidateResetStr).getTime() : 0;
@@ -125,7 +126,7 @@ export function getAnchoredWindowTimer(token: string, candidateResetStr?: string
   } else {
     // Check localStorage fallback
     const anchorStr = typeof window !== 'undefined'
-      ? (localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey))
+      ? (localStorage.getItem(storageKey) || localStorage.getItem(legacyStorageKey1) || localStorage.getItem(legacyStorageKey2))
       : null;
     const storedTime = anchorStr ? new Date(anchorStr).getTime() : 0;
     if (storedTime && storedTime > now) {
@@ -156,7 +157,13 @@ export function getAnchoredWindowTimer(token: string, candidateResetStr?: string
 }
 
 export async function checkKey(keyToken: string = ''): Promise<CheckKeyData> {
-  const token = (keyToken || '').trim();
+  let token = (keyToken || '').trim();
+  token = token.replace(/^["'`]|["'`]$/g, '').trim();
+  if (/^bearer\s+/i.test(token)) {
+    token = token.replace(/^bearer\s+/i, '').trim();
+  }
+  token = token.replace(/^["'`]|["'`]$/g, '').trim();
+
   if (!token) {
     throw new Error('API key is required to check key status.');
   }
@@ -266,9 +273,10 @@ export async function checkKey(keyToken: string = ''): Promise<CheckKeyData> {
         (upData.name && upData.name.toLowerCase().includes('20x'))
       );
       const tier: PlanTier = upData.tier || (is20x ? '20x' : '5x');
-      const defaultLimit = tier === '20x' ? 20000000 : 25000000;
+      const defaultLimit = tier === '20x' ? 20000000 : (tier === '5x' ? 5000000 : 25000000);
       const rawLimit = Number(upData.windowTokensLimit);
-      const isStaleLimitOverride = tier === '20x' && (rawLimit === 100000000 || rawLimit === 200000000);
+      const isStaleLimitOverride = (tier === '20x' && (rawLimit === 100000000 || rawLimit === 200000000)) ||
+                                   (tier === '5x' && (rawLimit === 25000000 || rawLimit === 50000000));
       const tokenLimit = (rawLimit && !isStaleLimitOverride) ? rawLimit : defaultLimit;
       const isQuotaVerified = Boolean(rawLimit && !isStaleLimitOverride);
       const quotaSource: 'provider' | 'configured_tier' = isQuotaVerified ? 'provider' : 'configured_tier';
@@ -370,6 +378,7 @@ export async function deleteKey(id: string): Promise<void> {
 export async function resetKeyWindow(id: string, keyToken?: string): Promise<void> {
   if (keyToken && typeof window !== 'undefined') {
     const safeToken = keyToken.trim().slice(0, 48);
+    localStorage.removeItem(`opuszenpro_window_anchor_${safeToken}`);
     localStorage.removeItem(`opuszenvix_window_anchor_${safeToken}`);
     localStorage.removeItem(`opuszyra_window_anchor_${safeToken}`);
   }
@@ -431,7 +440,7 @@ export async function streamClaudeMessage({
       body: JSON.stringify({
         model,
         messages: [{ role: 'user', content: prompt }],
-        system: system || 'You are an advanced Claude AI assistant accessible via OpusZenvix API gateway.',
+        system: system || 'You are an advanced Claude AI assistant accessible via OpusZenPro API gateway.',
         stream: true,
       }),
     });

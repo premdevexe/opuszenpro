@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import keysRouter, { handleKeyStatusInspection } from './routes/keys.js';
 import anthropicRouter from './routes/anthropicProxy.js';
@@ -10,17 +11,21 @@ import statsRouter from './routes/stats.js';
 import { supabase } from './lib/supabase.js';
 import { createRateLimiter, adminKeyRequired } from './lib/security.js';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const clientDist = path.join(__dirname, '../client/dist');
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, 'env') });
+dotenv.config({ path: path.resolve(__dirname, '../env') });
+dotenv.config();
 
 import { getUpstreamBase } from './lib/config.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const API_DOMAIN = process.env.API_DOMAIN || 'https://api.opuszenvix.live';
+const API_DOMAIN = process.env.API_DOMAIN || 'https://api.opuszenpro.live';
 
 const getActiveUpstream = () => {
   try {
@@ -97,7 +102,7 @@ app.get('/api/status', async (req, res) => {
 
   return res.json({
     status: 'ok',
-    service: 'OpusZenvix Middle-Man AI Gateway',
+    service: 'OpusZenPro Middle-Man AI Gateway',
     timestamp: new Date().toISOString(),
     refreshInterval: 30,
     overall: upstreamStatus?.overall || 'operational',
@@ -138,7 +143,7 @@ app.get('/api/health', (req, res) => {
   const upstreamBase = getActiveUpstream();
   res.json({
     status: 'online',
-    service: 'OpusZenvix AI Gateway',
+    service: 'OpusZenPro AI Gateway',
     role: 'Middle Man Passthrough Proxy',
     upstream: upstreamBase || 'not configured',
     gateway: `${API_DOMAIN}/v1`,
@@ -153,13 +158,18 @@ app.use(express.static(clientDist));
 // behaves identically on Express 4 and 5 (Express 5's path-to-regexp throws on
 // a bare `'*'`). Must stay after the router mounts so real endpoints win.
 const indexHtml = path.join(clientDist, 'index.html');
+const devIndexHtml = path.join(__dirname, '../client/index.html');
 app.use((req, res, next) => {
   if (req.method !== 'GET' || !req.accepts('html')) return next();
   const p = req.path;
   if (p.startsWith('/v1') || p.startsWith('/api')) return next();
-  res.sendFile(indexHtml, (err) => {
-    if (err) next();
-  });
+  const targetHtml = fs.existsSync(indexHtml) ? indexHtml : (fs.existsSync(devIndexHtml) ? devIndexHtml : null);
+  if (targetHtml) {
+    return res.sendFile(targetHtml, (err) => {
+      if (err) next();
+    });
+  }
+  next();
 });
 
 // Catch-all JSON 404 for unhandled API and v1 routes (never return HTML)
@@ -204,7 +214,7 @@ const isDirectRun = process.argv[1] && (
 if (isDirectRun && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`=======================================================`);
-    console.log(`🚀 OpusZenvix Middle-Man AI Gateway running on port ${PORT}`);
+    console.log(`🚀 OpusZenPro Middle-Man AI Gateway running on port ${PORT}`);
     console.log(`🌐 Middle-Man Public Domain: ${API_DOMAIN}`);
     console.log(`📡 Upstream Passthrough URL: ${getActiveUpstream() || 'NOT CONFIGURED'}`);
     console.log(`⚡ Anthropic Proxy: http://localhost:${PORT}/v1/messages`);

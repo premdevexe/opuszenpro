@@ -83,6 +83,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
     try {
       if (forceFresh && typeof window !== 'undefined') {
         const safeToken = target.slice(0, 48);
+        localStorage.removeItem(`opuszenpro_window_anchor_${safeToken}`);
         localStorage.removeItem(`opuszenvix_window_anchor_${safeToken}`);
         localStorage.removeItem(`opuszyra_window_anchor_${safeToken}`);
       }
@@ -226,10 +227,12 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
     }
   };
 
-  // Number metrics (Authoritative intended quota: 20,000,000 for Max 20x Key)
-  const defaultTierLimit = keyData?.tier === '20x' ? 20000000 : 25000000;
+  // Number metrics (Authoritative intended quota: 5,000,000 for Max 5x, 20,000,000 for Max 20x Key)
+  const defaultTierLimit = keyData?.tier === '20x' ? 20000000 : (keyData?.tier === '5x' ? 5000000 : 25000000);
   const rawLimit = keyData?.window_token_limit;
-  const isStaleLimitOverride = keyData?.tier === '20x' && (rawLimit === 100000000 || rawLimit === 200000000);
+  const isStaleLimitOverride =
+    (keyData?.tier === '20x' && (rawLimit === 100000000 || rawLimit === 200000000)) ||
+    (keyData?.tier === '5x' && (rawLimit === 25000000 || rawLimit === 50000000));
   const tokenLimit = (rawLimit && !isStaleLimitOverride) ? rawLimit : defaultTierLimit;
   const isUsageVerified = keyData ? (keyData.isUsageVerified !== false && keyData.window_tokens_used !== null) : false;
   const tokensUsed = keyData && typeof keyData.window_tokens_used === 'number' ? keyData.window_tokens_used : null;
@@ -248,6 +251,9 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
   const secRemaining = keyData?.secondsRemaining ?? 10800;
   const cycleSecondsCompleted = Math.max(0, 18000 - secRemaining);
   const cycleCompletedPercent = Math.min(100, Math.max(4, Math.round((cycleSecondsCompleted / 18000) * 100)));
+
+  const isRevoked = keyData?.status === 'revoked' || (keyData as any)?.keyStatus === 'revoked';
+  const isPaused = keyData?.status === 'paused' || (keyData as any)?.keyStatus === 'paused';
 
   // Models the key can actually use, straight from the live key-status payload.
   // Kept as a derived value so the chips and the synthetic log rows below can
@@ -404,13 +410,21 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
         <div className="space-y-6 animate-fadeIn">
           
           {/* 2. TOP ACTIVE KEY IDENTITY CARD */}
-          <div className="rounded-3xl border border-[#E7E2D8] dark:border-[#262422] bg-white dark:bg-[#121110] p-6 shadow-sm overflow-hidden relative border-t-4 border-t-emerald-500">
+          <div className={`rounded-3xl border border-[#E7E2D8] dark:border-[#262422] bg-white dark:bg-[#121110] p-6 shadow-sm overflow-hidden relative border-t-4 ${
+            isRevoked ? 'border-t-rose-500' : isPaused ? 'border-t-amber-500' : 'border-t-emerald-500'
+          }`}>
             
             {/* Top Badge Strip */}
             <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E8E3D9] dark:border-[#262422]">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-mono font-bold uppercase text-orange-600 dark:text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-lg border border-orange-500/20">
-                  ACTIVE API KEY
+                <span className={`text-[11px] font-mono font-bold uppercase px-2.5 py-1 rounded-lg border ${
+                  isRevoked
+                    ? 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20'
+                    : isPaused
+                    ? 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20'
+                    : 'text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-500/20'
+                }`}>
+                  {isRevoked ? 'REVOKED API KEY' : isPaused ? 'PAUSED API KEY' : 'ACTIVE API KEY'}
                 </span>
                 <span className="text-[11px] font-mono font-bold uppercase text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
                   LIVE FOR 2M+ REQS
@@ -448,9 +462,15 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
                   <span>Auto-Refresh</span>
                 </button>
 
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs font-mono font-bold">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                  <span>ACTIVE</span>
+                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-lg border text-xs font-mono font-bold ${
+                  isRevoked
+                    ? 'bg-rose-500/15 border-rose-500/30 text-rose-700 dark:text-rose-400'
+                    : isPaused
+                    ? 'bg-amber-500/15 border-amber-500/30 text-amber-700 dark:text-amber-400'
+                    : 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-400'
+                }`}>
+                  <span className={`w-2 h-2 rounded-full ${isRevoked ? 'bg-rose-500' : isPaused ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
+                  <span>{isRevoked ? 'REVOKED' : isPaused ? 'PAUSED' : 'ACTIVE'}</span>
                 </span>
               </div>
             </div>

@@ -146,11 +146,28 @@ await itAsync('5. Usage of 20,000,000 displays 0 remaining (100% used, capped)',
   assert.equal(res.remaining_percentage, 0.0);
 });
 
-// 6. Other plans remain unchanged
-it('6. Other plans remain unchanged: 5x, 5x_trial, custom keep 25,000,000', () => {
-  assert.equal(quotaFor('5x').limit, 25000000, '5x plan must remain 25,000,000');
+// 6. Plan quotas are correct: 5x has 5M, 20x has 20M, trial/custom keep 25M
+it('6. Plan quotas are correct: 5x has 5M, 20x has 20M, trial/custom keep 25M', () => {
+  assert.equal(quotaFor('5x').limit, 5000000, '5x plan must be 5,000,000');
+  assert.equal(quotaFor('20x').limit, 20000000, '20x plan must be 20,000,000');
   assert.equal(quotaFor('5x_trial').limit, 25000000, '5x_trial plan must remain 25,000,000');
   assert.equal(quotaFor('custom').limit, 25000000, 'custom plan must remain 25,000,000');
+});
+
+// 6B. Stale configured values of 25,000,000 and 50,000,000 cannot silently override 5x 5,000,000 quota
+await itAsync('6B. Stale configured values of 25M or 50M cannot silently override 5x 5,000,000 quota', async () => {
+  const keyWithStale25M = { id: 'key-stale-25m', tier: '5x', window_token_limit: 25000000 };
+  const res25M = await calculateSlidingWindowUsage(keyWithStale25M);
+  assert.equal(res25M.quota_limit, 5000000, 'Stale 25,000,000 must be normalized to 5,000,000 for 5x tier');
+
+  const keyWithStale50M = { id: 'key-stale-50m', tier: '5x', window_token_limit: 50000000 };
+  const res50M = await calculateSlidingWindowUsage(keyWithStale50M);
+  assert.equal(res50M.quota_limit, 5000000, 'Stale 50,000,000 must be normalized to 5,000,000 for 5x tier');
+
+  const fresh5xKey = { id: 'fresh-5x-zero', tier: '5x', total_requests: 0, window_tokens_used: 0 };
+  const resFresh = await calculateSlidingWindowUsage(fresh5xKey, { upstreamData: { totalRequests: 0 } });
+  assert.equal(resFresh.quota_limit, 5000000);
+  assert.equal(resFresh.remaining_tokens, 5000000);
 });
 
 // 7. Duplicate request IDs do not double-count tokens

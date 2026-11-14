@@ -248,7 +248,7 @@ export function App() {
                     Works in your favorite tools today
                   </h2>
                   <p className="mt-3 text-sm text-slate-400">
-                    Switch base URL to OpusZenvix and begin developing with 1M context in seconds.
+                    Switch base URL to OpusZenPro and begin developing with 1M context in seconds.
                   </p>
                 </div>
                 <div className="max-w-4xl mx-auto">
@@ -271,7 +271,7 @@ export function App() {
                   highlightWords={['API', 'access']}
                 />
                 <p className="mx-auto mt-6 max-w-md text-[16px] leading-relaxed text-slate-400">
-                  Deploy high-throughput Claude applications on OpusZenvix. Select a plan, activate via UPI, and
+                  Deploy high-throughput Claude applications on OpusZenPro. Select a plan, activate via UPI, and
                   have an API key configured in your terminal in minutes.
                 </p>
 

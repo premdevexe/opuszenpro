@@ -77,9 +77,8 @@ console.log('--- STARTING PHASE 15 ENVIRONMENT CONFIGURATION SUITE ---');
 // 5. Verify gateway returns safe 500 JSON error when UPSTREAM_API_BASE is missing
 {
   const original = process.env.UPSTREAM_API_BASE;
-  delete process.env.UPSTREAM_API_BASE;
-
   const { default: app } = await import('../server/server.js');
+  delete process.env.UPSTREAM_API_BASE;
   const server = http.createServer(app);
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   const port = server.address().port;

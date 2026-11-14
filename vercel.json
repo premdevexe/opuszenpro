@@ -28,6 +28,10 @@
       "destination": "/api"
     },
     {
+      "source": "/api/:path*",
+      "destination": "/api"
+    },
+    {
       "source": "/((?!api/|v1/|api$|v1$).*)",
       "destination": "/index.html"
     }

@@ -8,7 +8,7 @@ interface PricingProps {
 }
 
 export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
-  const whatsappUrl = getWhatsAppSupportUrl("Hi Admin! I want to subscribe to an OpusZenvix API plan.");
+  const whatsappUrl = getWhatsAppSupportUrl("Hi Admin! I want to subscribe to an OpusZenPro API plan.");
 
   return (
     <div id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

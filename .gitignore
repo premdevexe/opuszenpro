@@ -14,6 +14,10 @@ client/dist/
 **/.env
 **/.env.*
 !**/.env.example
+env
+**/env
+!**/env.example
+*.env
 
 # Logs and databases
 *.log

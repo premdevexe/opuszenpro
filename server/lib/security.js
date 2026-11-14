@@ -1,5 +1,5 @@
 /**
- * Shared request-hardening helpers for the OpusZenvix gateway.
+ * Shared request-hardening helpers for the OpusZenPro gateway.
  *
  * Everything here is intentionally permissive about being misconfigured: the
  * rate limiter is bounded in memory and expires on its own, and the admin
@@ -29,11 +29,12 @@ export const isTimeoutError = (err) =>
 // Token redaction
 // ---------------------------------------------------------------------------
 
-// OpusZenvix tokens look like `opm-live-<tier>-<16 hex chars>`.
-export const OPUSZENVIX_KEY_RE = /opm-live-[0-9a-zA-Z_-]+-[0-9a-fA-F]{8,}/g;
-export const OPUSZYRA_KEY_RE = OPUSZENVIX_KEY_RE;
+// OpusZenPro tokens look like `opm-live-<tier>-<16 hex chars>`.
+export const OPUSZENPRO_KEY_RE = /opm-live-[0-9a-zA-Z_-]+-[0-9a-fA-F]{8,}/g;
+export const OPUSZENVIX_KEY_RE = OPUSZENPRO_KEY_RE;
+export const OPUSZYRA_KEY_RE = OPUSZENPRO_KEY_RE;
 
-// Anything that is not shaped like an OpusZenvix token is dropped outright.
+// Anything that is not shaped like an OpusZenPro token is dropped outright.
 // Returning a masked fragment of an unrecognised value would still hand an
 // attacker the key prefix, which is the half they already have.
 //

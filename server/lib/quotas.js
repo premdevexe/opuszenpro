@@ -10,7 +10,7 @@
  * `tier: "20Ox"` can never silently mint a larger allowance.
  */
 export const TIER_QUOTAS = {
-  '5x': { limit: 25000000, rpm: 60, tpm: 400000, durationDays: 30 },
+  '5x': { limit: 5000000, rpm: 60, tpm: 400000, durationDays: 30 },
   '20x': { limit: 20000000, rpm: 120, tpm: 1000000, durationDays: 30 },
   '5x_trial': { limit: 25000000, rpm: 60, tpm: 400000, durationDays: 7 },
   custom: { limit: 25000000, rpm: 60, tpm: 400000, durationDays: 30 },

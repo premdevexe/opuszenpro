@@ -15,7 +15,10 @@ const windowAnchors = new Map();
 // Helper: refresh 5-hour window evaluation
 export const evaluateRollingWindow = (key) => {
   const now = new Date();
-  const limit = Number(key.window_token_limit) || quotaFor(key.tier).limit;
+  const rawLimit = Number(key.window_token_limit);
+  const isLegacyStale = (key.tier === '20x' && (rawLimit === 100000000 || rawLimit === 200000000)) ||
+                        (key.tier === '5x' && (rawLimit === 25000000 || rawLimit === 50000000));
+  const limit = (!isLegacyStale && rawLimit) ? rawLimit : quotaFor(key.tier).limit;
   const used = Number(key.window_tokens_used || 0);
   const remaining = Math.max(0, limit - used);
   const percentUsed = Math.min(100, Number(((used / limit) * 100).toFixed(1)));
@@ -333,6 +336,21 @@ export const handleMasterStatusTelemetry = async (req, res) => {
   return serveMasterTelemetry(req, res, masterKey, upstreamBase);
 };
 
+// Helper to thoroughly clean and normalize API key tokens
+export const normalizeToken = (raw) => {
+  if (!raw || typeof raw !== 'string') return '';
+  let token = raw.trim();
+  // Strip outer quotes if pasted with quotes (e.g., "key" or 'key')
+  token = token.replace(/^["'`]|["'`]$/g, '').trim();
+  // Strip Bearer prefix case-insensitively
+  if (/^bearer\s+/i.test(token)) {
+    token = token.replace(/^bearer\s+/i, '').trim();
+  }
+  // Strip quotes again in case of Bearer "key"
+  token = token.replace(/^["'`]|["'`]$/g, '').trim();
+  return token;
+};
+
 // Core Key Status Inspector (queries upstream /api/key-status + local DB)
 export const handleKeyStatusInspection = async (req, res) => {
   try {
@@ -341,25 +359,26 @@ export const handleKeyStatusInspection = async (req, res) => {
     const auth = req.headers['authorization'];
     const xApiKey = req.headers['x-api-key'];
     let headerToken = null;
-    if (auth && typeof auth === 'string' && auth.startsWith('Bearer ')) {
-      headerToken = auth.substring(7).trim();
+    if (auth && typeof auth === 'string') {
+      headerToken = normalizeToken(auth);
     } else if (xApiKey && typeof xApiKey === 'string') {
-      headerToken = xApiKey.trim();
+      headerToken = normalizeToken(xApiKey);
     }
 
     if (!keyToken && headerToken) {
       keyToken = headerToken;
     }
 
+    const trimmedKey = normalizeToken(keyToken);
+
     // Require an explicit key token; NEVER silently fall back to master key
-    if (!keyToken || typeof keyToken !== 'string' || !keyToken.trim()) {
+    if (!trimmedKey) {
       return res.status(400).json({
         success: false,
         error: 'Missing API key. Pass ?key=YOUR_KEY, Authorization: Bearer YOUR_KEY, or a JSON body with { "key": "..." }.'
       });
     }
 
-    const trimmedKey = keyToken.trim();
     const masterKey = getMasterUpstreamKey();
     const isAdmin = verifyAdminAuth(req);
 
@@ -441,15 +460,37 @@ export const handleKeyStatusInspection = async (req, res) => {
 
     // 2. Fetch local key record from Supabase if present
     let localRecord = null;
+    let localDbError = null;
     try {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('api_keys')
         .select('*')
         .eq('key_token', trimmedKey)
         .maybeSingle();
-      if (data) localRecord = data;
-    } catch {
-      // Local DB offline/unreachable
+
+      if (error) {
+        localDbError = error;
+      } else if (data) {
+        localRecord = data;
+      } else {
+        // Fallback: check if trimmedKey is an internal key ID (UUID or mock/key ID)
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(trimmedKey);
+        const isInternalId = isUuid || trimmedKey.startsWith('mock-') || trimmedKey.startsWith('key_');
+        if (isInternalId) {
+          const { data: idData, error: idError } = await supabase
+            .from('api_keys')
+            .select('*')
+            .eq('id', trimmedKey)
+            .maybeSingle();
+          if (idError) {
+            localDbError = idError;
+          } else if (idData) {
+            localRecord = idData;
+          }
+        }
+      }
+    } catch (err) {
+      localDbError = err;
     }
 
     // Key Validation Trust Boundary:
@@ -460,6 +501,16 @@ export const handleKeyStatusInspection = async (req, res) => {
         (upstreamData.status !== 'error' && !upstreamData.error)
       )
     );
+
+    // If database experienced a real failure and upstream did not resolve the key
+    if (localDbError && !isUpstreamKeyValid && !localRecord) {
+      console.error('[KeyStatus] Database error during key inspection:', localDbError.message || localDbError);
+      return res.status(503).json({
+        success: false,
+        error: 'Database service is temporarily unavailable. Please retry your request.',
+        code: 'DATABASE_ERROR'
+      });
+    }
 
     if (!localRecord) {
       const isProduction = process.env.NODE_ENV === 'production' || Boolean(process.env.VERCEL);
@@ -479,7 +530,8 @@ export const handleKeyStatusInspection = async (req, res) => {
     if (!isUpstreamKeyValid && !localRecord) {
       return res.status(404).json({
         success: false,
-        error: 'Key not found or invalid format. Please check your token.'
+        error: 'Key not found or invalid format. Please check your token.',
+        code: 'KEY_NOT_FOUND'
       });
     }
 
@@ -513,9 +565,10 @@ export const handleKeyStatusInspection = async (req, res) => {
     }
     if (!tier) tier = '20x'; // Default internal tier allocation
 
-    // Authoritative Quota Limit calculation (intended: 20,000,000 for Max 20x)
+    // Authoritative Quota Limit calculation (intended: 5,000,000 for Max 5x, 20,000,000 for Max 20x)
     const isLegacyStaleOverride = (t, val) =>
-      t === '20x' && (val === 100000000 || val === 200000000);
+      (t === '20x' && (val === 100000000 || val === 200000000)) ||
+      (t === '5x' && (val === 25000000 || val === 50000000));
 
     const defaultLimit = quotaFor(tier).limit;
     const rawUpstreamLimit = Number(upstreamData?.windowTokensLimit);
@@ -528,10 +581,12 @@ export const handleKeyStatusInspection = async (req, res) => {
       tokenLimit = rawLocalLimit;
     }
 
+    const canonicalToken = localRecord?.key_token || trimmedKey;
+
     // Build key entity for authoritative rolling 5-hour quota calculation
     const keyEntity = localRecord || {
       id: null,
-      key_token: trimmedKey,
+      key_token: canonicalToken,
       tier,
       window_token_limit: tokenLimit
     };
@@ -550,8 +605,8 @@ export const handleKeyStatusInspection = async (req, res) => {
     const resetTimeStr = upstreamData?.windowResetAt || slidingUsage.window_resets_at;
     const windowStartedAt = slidingUsage.window_started_at;
 
-    const masked = trimmedKey.length > 12 
-      ? `${trimmedKey.slice(0, 10)}...${trimmedKey.slice(-4)}`
+    const masked = canonicalToken.length > 12 
+      ? `${canonicalToken.slice(0, 10)}...${canonicalToken.slice(-4)}`
       : '••••••••••••';
 
     const upstreamModels = Array.isArray(upstreamData?.allowedModels) ? upstreamData.allowedModels : [];
@@ -575,11 +630,22 @@ export const handleKeyStatusInspection = async (req, res) => {
 
     const safePayload = sanitizePayload(upstreamData || localRecord, masterKey);
 
+    let resolvedStatus = 'active';
+    if (localRecord?.status === 'revoked' || upstreamData?.status === 'revoked' || upstreamData?.isActive === false || upstreamData?.keyStatus === 'revoked') {
+      resolvedStatus = 'revoked';
+    } else if (localRecord?.status === 'paused' || upstreamData?.status === 'paused' || upstreamData?.keyStatus === 'paused') {
+      resolvedStatus = 'paused';
+    } else if (localRecord?.status) {
+      resolvedStatus = localRecord.status;
+    } else if (upstreamData?.keyStatus) {
+      resolvedStatus = upstreamData.keyStatus;
+    }
+
     const result = {
       success: true,
       status: 'ok',
       isRealtime: upstreamData?.isRealtime ?? true,
-      keyStatus: (upstreamData?.isActive || upstreamData?.status === 'found') ? 'active' : (upstreamData?.keyStatus || localRecord?.status || 'active'),
+      keyStatus: resolvedStatus,
       name: keyName,
       planName,
       planSource,
@@ -593,10 +659,10 @@ export const handleKeyStatusInspection = async (req, res) => {
       key: {
         id: localRecord?.id || 'upstream-key',
         name: keyName,
-        key_token: trimmedKey,
+        key_token: canonicalToken,
         masked_token: masked,
         tier,
-        status: (upstreamData?.isActive || upstreamData?.status === 'found') ? 'active' : (upstreamData?.keyStatus || localRecord?.status || 'active'),
+        status: resolvedStatus,
         planName,
         planSource,
         isPlanVerified,
@@ -643,9 +709,8 @@ export const handleKeyStatusInspection = async (req, res) => {
       failedRequests: upstreamData?.failedRequests ?? 0,
       last24h: upstreamData?.last24h || { requests: upstreamData?.last24hRequests || 0 },
       rateLimit: slidingUsage.rate_limit_rpm || 60,
-      connectionStatus: upstreamData?.connectionStatus || 'Online',
-      isActive: true,
-      windowActive: true,
+      isActive: resolvedStatus === 'active',
+      windowActive: resolvedStatus === 'active',
       windowTokensLimit: slidingUsage.quota_limit,
       windowTokensUsed: tokensUsed,
       remainingTokens,
