@@ -12,7 +12,7 @@ const SNIPPETS = [
 npx opuszenpro
 
 # Automatically configures Claude Code, Cursor, and shell environments
-# with https://api.opuszenpro.live/v1 and your key!`,
+# with https://api.opuszen.pro/v1 and your key!`,
   },
   {
     id: 'claudecode',
@@ -23,7 +23,7 @@ npx opuszenpro
 npx opuszenpro
 
 # Or export manually:
-export ANTHROPIC_BASE_URL="https://api.opuszenpro.live/v1"
+export ANTHROPIC_BASE_URL="https://api.opuszen.pro/v1"
 export ANTHROPIC_API_KEY="opm-live-5x-your_api_key_here"
 
 # Run Claude Code with full 5-hour rolling capacity
@@ -36,7 +36,7 @@ claude`,
     filename: '.cursorrules / settings.json',
     code: `// In Cursor > Settings > Models > OpenAI/Anthropic API Key
 {
-  "anthropic.overrideBaseUrl": "https://api.opuszenpro.live/v1",
+  "anthropic.overrideBaseUrl": "https://api.opuszen.pro/v1",
   "anthropic.apiKey": "opm-live-20x-your_api_key_here",
   "defaultModel": "claude-3-7-sonnet-20250219"
 }`,
@@ -50,7 +50,7 @@ claude`,
 
 client = anthropic.Anthropic(
     api_key="opm-live-5x-your_api_key_here",
-    base_url="https://api.opuszenpro.live/v1"  # Drop-in OpusZenPro proxy
+    base_url="https://api.opuszen.pro/v1"  # Drop-in OpusZenPro proxy
 )
 
 response = client.messages.create(
@@ -70,7 +70,7 @@ print(response.content[0].text)`,
 
 const anthropic = new Anthropic({
   apiKey: 'opm-live-20x-your_api_key_here',
-  baseURL: 'https://api.opuszenpro.live/v1', // Unbuffered SSE streaming
+  baseURL: 'https://api.opuszen.pro/v1', // Unbuffered SSE streaming
 });
 
 const stream = await anthropic.messages.create({
@@ -92,7 +92,7 @@ for await (const chunk of stream) {
     code: `{
   "apiProvider": "anthropic",
   "apiModelId": "claude-3-7-sonnet-20250219",
-  "anthropicBaseUrl": "https://api.opuszenpro.live/v1",
+  "anthropicBaseUrl": "https://api.opuszen.pro/v1",
   "apiKey": "opm-live-5x-your_api_key_here"
 }`,
   },
@@ -101,7 +101,7 @@ for await (const chunk of stream) {
     name: 'cURL',
     lang: 'bash',
     filename: 'request.sh',
-    code: `curl https://api.opuszenpro.live/v1/messages \\
+    code: `curl https://api.opuszen.pro/v1/messages \\
   -H "content-type: application/json" \\
   -H "x-api-key: opm-live-5x-your_api_key_here" \\
   -H "anthropic-version: 2023-06-01" \\

@@ -12,7 +12,7 @@ import os from 'node:os';
 
 const DEFAULT_DOMAIN = process.env.API_DOMAIN
   ? process.env.API_DOMAIN.replace(/\/+$/, '')
-  : 'https://api.opuszenpro.live';
+  : 'https://api.opuszen.pro';
 const GATEWAY_URL = `${DEFAULT_DOMAIN}/v1`;
 
 const BANNER = `
@@ -67,7 +67,7 @@ async function main() {
     }
 
     console.log('\n\x1b[32m\x1b[1m✔ Setup complete!\x1b[0m Ready to code with unbuffered Claude 3.7 / Opus / Sonnet streaming.');
-    console.log('\x1b[90mNeed help? Visit https://opuszenpro.live/docs or contact support.\x1b[0m\n');
+    console.log('\x1b[90mNeed help? Visit https://opuszen.pro/docs or contact support.\x1b[0m\n');
   } catch (err) {
     console.error('\x1b[31mError during setup:\x1b[0m', err.message);
   } finally {

@@ -152,12 +152,12 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a
-                  href="https://opuszenpro.live/"
+                  href="https://opuszen.pro/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1 text-brand-400 hover:text-brand-300"
                 >
-                  <span>opuszenpro.live</span>
+                  <span>opuszen.pro</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
               </li>

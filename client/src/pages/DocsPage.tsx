@@ -52,7 +52,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
   const [sdkTab, setSdkTab] = useState<'python' | 'typescript' | 'curl' | 'sse' | 'openai'>('python');
 
-  const cleanDomain = import.meta.env.VITE_API_DOMAIN || 'https://api.opuszenpro.live';
+  const cleanDomain = import.meta.env.VITE_API_DOMAIN || 'https://api.opuszen.pro';
   const v1Base = `${cleanDomain}/v1`;
 
   const copyToClipboard = async (text: string, id: string) => {

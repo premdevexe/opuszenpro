@@ -82,7 +82,7 @@ export const Migration: React.FC = () => {
               </div>
               <div className="overflow-x-auto px-5 py-4 font-mono text-[13px] text-slate-400">
                 <span>base_url = </span>
-                <span className="text-emerald-400 font-semibold">"https://api.opuszenpro.live/v1"</span>
+                <span className="text-emerald-400 font-semibold">"https://api.opuszen.pro/v1"</span>
                 <span className="block mt-1 text-[11px] text-emerald-400/80 font-mono">
                   ✓ Instant 1M context, 5h rolling allowance &amp; zero waitlist
                 </span>

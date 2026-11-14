@@ -29,7 +29,7 @@ console.log('--- STARTING PHASE 15 ENVIRONMENT CONFIGURATION SUITE ---');
 {
   const activeBase = getUpstreamBase();
   const hasKey = Boolean(getMasterUpstreamKey());
-  record('Loads active UPSTREAM_API_BASE from .env', activeBase === 'https://api.opusmax.live');
+  record('Loads active UPSTREAM_API_BASE from .env', activeBase === 'https://api.opusmax.pro' || activeBase === 'https://api.opusmax.live');
   record('Loads UPSTREAM_API_KEY from .env', hasKey === true);
 }
 
