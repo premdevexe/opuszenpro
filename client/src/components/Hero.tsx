@@ -78,7 +78,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
                 </span>
-                <span>New — Fable 5.1 &amp; Sonnet 5, live</span>
+                <span>New — Fable 5.2 &amp; Sonnet 5.5, live</span>
               </span>
             </motion.div>
 
@@ -100,8 +100,8 @@ export const Hero: React.FC<HeroProps> = ({
               transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="mt-7 max-w-xl text-[16px] sm:text-[17px] leading-relaxed text-slate-400">
-                Claude <strong className="font-semibold text-white">Fable 5.1</strong> and{' '}
-                <strong className="font-semibold text-white">Sonnet 5</strong> are live here alongside
+                Claude <strong className="font-semibold text-white">Fable 5.2</strong> and{' '}
+                <strong className="font-semibold text-white">Sonnet 5.5</strong> are live here alongside
                 every Opus, Sonnet and Haiku release — same endpoint, same key,{' '}
                 <span className="text-brand-300 font-medium">1M-token window</span>. Swap one
                 environment variable and keep building.
@@ -194,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <span className="text-slate-400">export </span>
                     <span className="text-brand-300">ANTHROPIC_BASE_URL</span>
                     <span className="text-slate-500">=</span>
-                    <span className="text-amber-300">"https://opuszen.pro/v1"</span>
+                    <span className="text-amber-300">"https://api.opusmax.pro/v1"</span>
                   </p>
 
                   <div className="pt-2 border-t border-white/5 text-[12px] text-slate-400 space-y-1">

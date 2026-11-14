@@ -12,7 +12,7 @@ import os from 'node:os';
 
 const DEFAULT_DOMAIN = process.env.API_DOMAIN
   ? process.env.API_DOMAIN.replace(/\/+$/, '')
-  : 'https://opuszen.pro';
+  : 'https://api.opusmax.pro';
 const GATEWAY_URL = `${DEFAULT_DOMAIN}/v1`;
 
 const BANNER = `

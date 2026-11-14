@@ -16,51 +16,52 @@ interface ModelInfo {
 
 const FLAGSHIP_MODELS: ModelInfo[] = [
   {
-    name: 'Claude Fable 5.1',
-    id: 'claude-fable-5-1',
+    name: 'Claude Fable 5.2',
+    id: 'claude-fable-5-2',
     context: '1M context',
-    badge: 'New',
+    badge: 'Latest Flagship',
     description:
-      'The most capable model in the lineup, for demanding reasoning and long-horizon agentic work. Its knowledge runs to June 2026 — the most recent of any model here.',
-    cutoff: 'June 2026',
+      'The premier flagship model in the lineup for frontier reasoning, complex multi-turn problem solving, and autonomous swarms. Created Nov 2026.',
+    cutoff: 'Nov 2026',
     tier: 'flagship',
   },
   {
-    name: 'Claude Fable 5',
-    id: 'claude-fable-5',
+    name: 'Claude Sonnet 5.5',
+    id: 'claude-sonnet-5-5',
     context: '1M context',
+    badge: 'New & Fast',
     description:
-      'The previous Fable generation. Frontier reasoning and long-horizon agentic work on a full 1M-token context window.',
-    cutoff: 'Late 2025',
+      'Frontier intelligence at breakthrough Sonnet speeds. The optimal daily driver for complex codebase refactoring, real-time agent loops, and high-throughput pipelines.',
+    cutoff: 'Sep 2026',
     tier: 'flagship',
   },
   {
     name: 'Claude Opus 5.5',
     id: 'claude-opus-5-5',
     context: '1M context',
-    badge: 'New',
+    badge: 'Deep Reasoning',
     description:
-      'The current Opus, engineered for long-running agentic coding and knowledge tasks. Thinks before answering with chain-of-thought, knowledge to June 2026.',
+      'Engineered for deep reflection and long-running autonomous knowledge tasks. Features extended chain-of-thought and rigorous analytical synthesis.',
+    cutoff: 'Sep 2026',
+    tier: 'flagship',
+  },
+  {
+    name: 'Claude Haiku 5.5',
+    id: 'claude-haiku-5-5',
+    context: '200K context',
+    badge: 'Lightning Speed',
+    description:
+      'Sub-second inference at ~180 tokens/sec. Purpose-built for instant code autocompletions, classification, batch extraction, and rapid tool calling.',
+    cutoff: 'Oct 2026',
+    tier: 'flagship',
+  },
+  {
+    name: 'Claude Fable 5.1',
+    id: 'claude-fable-5-1',
+    context: '1M context',
+    description:
+      'Highly capable reasoning model for demanding knowledge synthesis and long-horizon agentic work with full 1M-token context.',
     cutoff: 'June 2026',
-    tier: 'flagship',
-  },
-  {
-    name: 'Claude Opus 5',
-    id: 'claude-opus-5',
-    context: '1M context',
-    description:
-      'The Opus flagship predecessor. Deep reflection before answering by default, unmatched reasoning nuance and creative synthesis.',
-    cutoff: 'May 2026',
-    tier: 'flagship',
-  },
-  {
-    name: 'Claude Sonnet 5',
-    id: 'claude-sonnet-5',
-    context: '1M context',
-    badge: 'New',
-    description:
-      'Frontier intelligence at Sonnet speed. The standard daily driver for complex codebase refactoring, interactive chats, and high-throughput pipelines.',
-    cutoff: 'May 2026',
     tier: 'flagship',
   },
   {
@@ -76,16 +77,19 @@ const FLAGSHIP_MODELS: ModelInfo[] = [
 ];
 
 const SUPPORTING_MODELS = [
+  { name: 'Claude Opus 5', id: 'claude-opus-5', context: '1M', status: 'Active' },
+  { name: 'Claude Sonnet 5', id: 'claude-sonnet-5', context: '1M', status: 'Active' },
+  { name: 'Claude Fable 5', id: 'claude-fable-5', context: '1M', status: 'Active' },
   { name: 'Claude Opus 4.8', id: 'claude-opus-4-8', context: '1M', status: 'Active' },
   { name: 'Claude Opus 4.7', id: 'claude-opus-4-7', context: '1M', status: 'Active' },
   { name: 'Claude Opus 4.6', id: 'claude-opus-4-6', context: '1M', status: 'Active' },
   { name: 'Claude Sonnet 4.6', id: 'claude-sonnet-4-6', context: '1M', status: 'Active' },
+  { name: 'Claude Opus 4.5', id: 'claude-opus-4-5', context: '200K', status: 'Active' },
+  { name: 'Claude Sonnet 4.5', id: 'claude-sonnet-4-5-20250929', context: '200K', status: 'Active' },
+  { name: 'Claude Haiku 4.5', id: 'claude-haiku-4-5-20251001', context: '200K', status: 'Active' },
   { name: 'Claude Sonnet 3.5 v2', id: 'claude-3-5-sonnet-20241022', context: '200K', status: 'Active' },
-  { name: 'Claude Haiku 4.5', id: 'claude-haiku-4-5', context: '1M', status: 'Active' },
   { name: 'Claude Haiku 3.5', id: 'claude-3-5-haiku-20241022', context: '200K', status: 'Active' },
   { name: 'Claude Opus 3', id: 'claude-3-opus-20240229', context: '200K', status: 'Active' },
-  { name: 'Claude Sonnet 3', id: 'claude-3-sonnet-20240229', context: '200K', status: 'Active' },
-  { name: 'Claude Haiku 3', id: 'claude-3-haiku-20240307', context: '200K', status: 'Active' },
 ];
 
 export const ModelLineup: React.FC = () => {
