@@ -90,7 +90,8 @@ router.get(['/messages', '/v1/messages'], (req, res) => {
   } catch {
     // Unconfigured upstream base
   }
-  const apiDomain = process.env.API_DOMAIN || 'https://opuszen.pro';
+  const rawDomain = process.env.API_DOMAIN || 'https://opuszen.pro';
+  const apiDomain = rawDomain.replace('api.opuszen.pro', 'opuszen.pro').replace(/\/+$/, '');
 
   return res.json({
     status: 'ok',

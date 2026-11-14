@@ -25,7 +25,8 @@ import { getUpstreamBase } from './lib/config.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const API_DOMAIN = process.env.API_DOMAIN || 'https://opuszen.pro';
+const rawDomain = process.env.API_DOMAIN || 'https://opuszen.pro';
+const API_DOMAIN = rawDomain.replace('api.opuszen.pro', 'opuszen.pro').replace(/\/+$/, '');
 
 const getActiveUpstream = () => {
   try {
@@ -141,12 +142,14 @@ app.get('/api/status', async (req, res) => {
 // Health check
 app.get('/api/health', (req, res) => {
   const upstreamBase = getActiveUpstream();
+  const host = req.headers['x-forwarded-host'] || req.headers.host || '';
+  const domain = host && !host.includes('localhost') ? `https://${host}` : API_DOMAIN;
   res.json({
     status: 'online',
     service: 'OpusZenPro AI Gateway',
     role: 'Middle Man Passthrough Proxy',
     upstream: upstreamBase || 'not configured',
-    gateway: `${API_DOMAIN}/v1`,
+    gateway: `${domain}/v1`,
     timestamp: new Date().toISOString()
   });
 });

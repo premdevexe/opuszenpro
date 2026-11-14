@@ -72,7 +72,7 @@ export const BRAND_NAME = 'OpusZenPro';
 export function getApiDomain() {
   const raw = process.env.API_DOMAIN;
   if (raw && typeof raw === 'string' && raw.trim()) {
-    return raw.trim().replace(/\/+$/, '');
+    return raw.trim().replace(/\/+$/, '').replace('api.opuszen.pro', 'opuszen.pro');
   }
   return 'https://opuszen.pro';
 }
