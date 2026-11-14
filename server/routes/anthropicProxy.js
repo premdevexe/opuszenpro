@@ -193,8 +193,11 @@ router.post(['/messages', '/v1/messages'], async (req, res) => {
     });
   }
 
-  // Determine effective key: master upstream key takes precedence if configured, otherwise client's key
-  const effectiveUpstreamKey = masterKey || clientKey;
+  // Determine effective key:
+  // Direct Anthropic / upstream key formats (e.g. sk-ant-*, sk-*) supplied by client take precedence.
+  // Otherwise, use the server's configured master upstream credential.
+  const isDirectUpstreamKey = clientKey && (clientKey.startsWith('sk-ant-') || clientKey.startsWith('sk-'));
+  const effectiveUpstreamKey = isDirectUpstreamKey ? clientKey : (masterKey || clientKey);
 
   // Local Supabase validation if key is tracked in database
   let keyRecord = null;
@@ -404,7 +407,8 @@ router.post(['/chat/completions', '/v1/chat/completions'], async (req, res) => {
     return res.status(401).json({ error: { message: 'Missing Authorization header or API key' } });
   }
 
-  const effectiveKey = masterKey || clientKey;
+  const isDirectUpstreamKey = clientKey && (clientKey.startsWith('sk-ant-') || clientKey.startsWith('sk-'));
+  const effectiveKey = isDirectUpstreamKey ? clientKey : (masterKey || clientKey);
 
   // Local Supabase validation if key is tracked in database
   let keyRecord = null;

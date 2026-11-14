@@ -402,8 +402,8 @@ export const handleKeyStatusInspection = async (req, res) => {
     }
 
     // Master key telemetry check:
-    // Unauthenticated callers or non-admins cannot inspect the upstream master key
-    const isMasterRequest = Boolean(trimmedKey === 'master' || (masterKey && trimmedKey === masterKey));
+    // Unauthenticated callers or non-admins cannot inspect the upstream master key via alias 'master'
+    const isMasterRequest = Boolean(trimmedKey === 'master');
     if (isMasterRequest) {
       if (!isAdmin) {
         return res.status(401).json({
