@@ -52,7 +52,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
   const [sdkTab, setSdkTab] = useState<'python' | 'typescript' | 'curl' | 'sse' | 'openai'>('python');
 
-  const cleanDomain = import.meta.env.VITE_API_DOMAIN || 'https://api.opuszen.pro';
+  const cleanDomain = import.meta.env.VITE_API_DOMAIN || 'https://opuszen.pro';
   const v1Base = `${cleanDomain}/v1`;
 
   const copyToClipboard = async (text: string, id: string) => {
@@ -233,7 +233,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                   <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
                     <span>json</span>
                     <button
-                      onClick={() => copyToClipboard(`{\n  "env": {\n    "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY",\n    "ANTHROPIC_BASE_URL": "${cleanDomain}",\n    "ANTHROPIC_MODEL": "claude-opus-4-8",\n    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6",\n    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"\n  },\n  "hasCompletedOnboarding": true\n}`, 'claude-settings')}
+                      onClick={() => copyToClipboard(`{\n  "env": {\n    "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY",\n    "ANTHROPIC_BASE_URL": "${v1Base}",\n    "ANTHROPIC_MODEL": "claude-3-7-sonnet-20250219",\n    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-3-7-sonnet-20250219",\n    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"\n  },\n  "hasCompletedOnboarding": true\n}`, 'claude-settings')}
                       className="flex items-center gap-1 text-stone-400 hover:text-white transition"
                     >
                       {copiedSnippetId === 'claude-settings' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -241,7 +241,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                     </button>
                   </div>
                   <pre className="p-4 text-xs font-mono text-white leading-relaxed overflow-x-auto">
-                    <code>{`{\n  "env": {\n    "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY",\n    "ANTHROPIC_BASE_URL": "${cleanDomain}",\n    "ANTHROPIC_MODEL": "claude-opus-4-8",\n    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-6",\n    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"\n  },\n  "hasCompletedOnboarding": true\n}`}</code>
+                    <code>{`{\n  "env": {\n    "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY",\n    "ANTHROPIC_BASE_URL": "${v1Base}",\n    "ANTHROPIC_MODEL": "claude-3-7-sonnet-20250219",\n    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-3-7-sonnet-20250219",\n    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"\n  },\n  "hasCompletedOnboarding": true\n}`}</code>
                   </pre>
                 </div>
               </div>
@@ -266,7 +266,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                   </div>
                   <div className="flex items-center gap-3 p-3 rounded-xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                     <span className="text-stone-500 w-28 shrink-0">Model Names</span>
-                    <code className="text-[#EA580C] font-bold">claude-opus-4-8, claude-sonnet-4-6, claude-3-7-sonnet-20250219</code>
+                    <code className="text-[#EA580C] font-bold">claude-3-7-sonnet-20250219, claude-3-5-sonnet-20241022, claude-3-opus-20240229</code>
                   </div>
                 </div>
               </div>
@@ -337,14 +337,14 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                   <button
                     onClick={() => {
                       const snippet = sdkTab === 'python'
-                        ? `import anthropic\n\nclient = anthropic.Anthropic(\n    api_key="YOUR_API_KEY",\n    base_url="${cleanDomain}",\n)\n\nmessage = client.messages.create(\n    model="claude-opus-4-8",\n    max_tokens=1024,\n    messages=[{"role": "user", "content": "Explain quantum computing in one paragraph."}],\n)\n\nprint(message.content[0].text)`
+                        ? `import anthropic\n\nclient = anthropic.Anthropic(\n    api_key="YOUR_API_KEY",\n    base_url="${v1Base}",\n)\n\nmessage = client.messages.create(\n    model="claude-3-7-sonnet-20250219",\n    max_tokens=1024,\n    messages=[{"role": "user", "content": "Explain quantum computing in one paragraph."}],\n)\n\nprint(message.content[0].text)`
                         : sdkTab === 'typescript'
-                        ? `import Anthropic from '@anthropic-ai/sdk';\n\nconst anthropic = new Anthropic({\n  apiKey: 'YOUR_API_KEY',\n  baseURL: '${cleanDomain}',\n});\n\nconst response = await anthropic.messages.create({\n  model: 'claude-sonnet-4-6',\n  max_tokens=1024,\n  messages: [{ role: 'user', content: 'Write a TypeScript quicksort.' }],\n});\n\nconsole.log(response.content[0]);`
+                        ? `import Anthropic from '@anthropic-ai/sdk';\n\nconst anthropic = new Anthropic({\n  apiKey: 'YOUR_API_KEY',\n  baseURL: '${v1Base}',\n});\n\nconst response = await anthropic.messages.create({\n  model: 'claude-3-7-sonnet-20250219',\n  max_tokens=1024,\n  messages: [{ role: 'user', content: 'Write a TypeScript quicksort.' }],\n});\n\nconsole.log(response.content[0]);`
                         : sdkTab === 'curl'
-                        ? `curl ${v1Base}/messages \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "anthropic-version: 2023-06-01" \\\n  -H "content-type: application/json" \\\n  -d '{\n    "model": "claude-opus-4-8",\n    "max_tokens": 1024,\n    "messages": [{"role": "user", "content": "Hello via OpusZenPro!"}]\n  }'`
+                        ? `curl ${v1Base}/messages \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "anthropic-version: 2023-06-01" \\\n  -H "content-type: application/json" \\\n  -d '{\n    "model": "claude-3-7-sonnet-20250219",\n    "max_tokens": 1024,\n    "messages": [{"role": "user", "content": "Hello via OpusZenPro!"}]\n  }'`
                         : sdkTab === 'sse'
-                        ? `import anthropic\n\nclient = anthropic.Anthropic(api_key="YOUR_API_KEY", base_url="${cleanDomain}")\n\nwith client.messages.stream(\n    max_tokens=1024,\n    messages=[{"role": "user", "content": "Write an essay about AI autonomous swarms."}],\n    model="claude-sonnet-4-6",\n) as stream:\n    for text in stream.text_stream:\n        print(text, end="", flush=True)`
-                        : `from openai import OpenAI\n\nclient = OpenAI(\n    api_key="YOUR_API_KEY",\n    base_url="${v1Base}",\n)\n\nresponse = client.chat.completions.create(\n    model="claude-sonnet-4-6",\n    messages=[{"role": "user", "content": "Hello from OpenAI SDK via OpusZenPro!"}],\n)\nprint(response.choices[0].message.content)`;
+                        ? `import anthropic\n\nclient = anthropic.Anthropic(api_key="YOUR_API_KEY", base_url="${v1Base}")\n\nwith client.messages.stream(\n    max_tokens=1024,\n    messages=[{"role": "user", "content": "Write an essay about AI autonomous swarms."}],\n    model="claude-3-7-sonnet-20250219",\n) as stream:\n    for text in stream.text_stream:\n        print(text, end="", flush=True)`
+                        : `from openai import OpenAI\n\nclient = OpenAI(\n    api_key="YOUR_API_KEY",\n    base_url="${v1Base}",\n)\n\nresponse = client.chat.completions.create(\n    model="claude-3-7-sonnet-20250219",\n    messages=[{"role": "user", "content": "Hello from OpenAI SDK via OpusZenPro!"}],\n)\nprint(response.choices[0].message.content)`;
                       copyToClipboard(snippet, `sdk-${sdkTab}`);
                     }}
                     className="flex items-center gap-1.5 text-stone-400 hover:text-white transition"
@@ -360,11 +360,11 @@ export const DocsPage: React.FC<DocsPageProps> = ({
 # Initialize the client pointing to your OpusZenPro Gateway
 client = anthropic.Anthropic(
     api_key="YOUR_API_KEY",
-    base_url="${cleanDomain}",
+    base_url="${v1Base}",
 )
 
 message = client.messages.create(
-    model="claude-opus-4-8",
+    model="claude-3-7-sonnet-20250219",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Explain quantum computing in one paragraph."}
@@ -380,11 +380,11 @@ print(message.content[0].text)`}</code>
 // Initialize the client pointing to your OpusZenPro Gateway
 const anthropic = new Anthropic({
   apiKey: 'YOUR_API_KEY',
-  baseURL: '${cleanDomain}',
+  baseURL: '${v1Base}',
 });
 
 const response = await anthropic.messages.create({
-  model: 'claude-sonnet-4-6',
+  model: 'claude-3-7-sonnet-20250219',
   max_tokens=1024,
   messages: [{ role: 'user', content: 'Write a TypeScript quicksort algorithm.' }],
 });
@@ -398,7 +398,7 @@ console.log(response.content[0]);`}</code>
   -H "anthropic-version: 2023-06-01" \\
   -H "content-type: application/json" \\
   -d '{
-    "model": "claude-opus-4-8",
+    "model": "claude-3-7-sonnet-20250219",
     "max_tokens": 1024,
     "messages": [
       { "role": "user", "content": "Hello from raw cURL via OpusZenPro!" }
@@ -411,14 +411,14 @@ console.log(response.content[0]);`}</code>
 
 client = anthropic.Anthropic(
     api_key="YOUR_API_KEY", 
-    base_url="${cleanDomain}"
+    base_url="${v1Base}"
 )
 
 # Unbuffered real-time SSE stream pass-through
 with client.messages.stream(
     max_tokens=1024,
     messages=[{"role": "user", "content": "Write an essay about AI autonomous swarms."}],
-    model="claude-sonnet-4-6",
+    model="claude-3-7-sonnet-20250219",
 ) as stream:
     for text in stream.text_stream:
         print(text, end="", flush=True)`}</code>
@@ -434,7 +434,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="claude-sonnet-4-6",
+    model="claude-3-7-sonnet-20250219",
     messages=[{"role": "user", "content": "Hello from OpenAI SDK via OpusZenPro!"}],
 )
 
@@ -482,7 +482,7 @@ print(response.choices[0].message.content)`}</code>
                   
                   <div className="dark-code-box relative group rounded-xl border border-[#262320] bg-[#0F0E0D] overflow-hidden">
                     <pre className="p-3 text-xs font-mono text-white leading-relaxed overflow-x-auto">
-                      <code>{`{\n  "model": "claude-opus-4-8",\n  "max_tokens": 1024,\n  "messages": [\n    { "role": "user", "content": "Hello, Claude!" }\n  ],\n  "stream": false\n}`}</code>
+                      <code>{`{\n  "model": "claude-3-7-sonnet-20250219",\n  "max_tokens": 1024,\n  "messages": [\n    { "role": "user", "content": "Hello, Claude!" }\n  ],\n  "stream": false\n}`}</code>
                     </pre>
                   </div>
                 </div>
@@ -496,7 +496,7 @@ print(response.choices[0].message.content)`}</code>
                     </div>
                     <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{v1Base}/models</code>
                   </div>
-                  <p className="text-xs text-stone-500 mb-2">List all active supported models (Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5, Claude Opus 4.8, 4.7, 4.6, 4.5, etc.).</p>
+                  <p className="text-xs text-stone-500 mb-2">List all active supported models (Claude 3.7 Sonnet, Claude 3.5 Sonnet, Claude 3 Opus, Claude 3.5 Haiku, Claude Fable 5.1, etc.).</p>
                 </div>
 
                 {/* Endpoint 3 */}
@@ -555,7 +555,7 @@ print(response.choices[0].message.content)`}</code>
                   <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
                     <span>cURL Request</span>
                     <button
-                      onClick={() => copyToClipboard(`curl -X POST ${cleanDomain}/api/key-status \\\n  -H "Content-Type: application/json" \\\n  -d '{"key": "opm-live-5x-9f8a3c2e1b4d7f0a"}'`, 'curl-key-status')}
+                      onClick={() => copyToClipboard(`curl -X POST ${cleanDomain}/api/key-status \\\n  -H "Content-Type: application/json" \\\n  -d '{"key": "YOUR_API_KEY"}'`, 'curl-key-status')}
                       className="flex items-center gap-1 text-stone-400 hover:text-white transition"
                     >
                       {copiedSnippetId === 'curl-key-status' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -565,7 +565,7 @@ print(response.choices[0].message.content)`}</code>
                   <pre className="p-3 text-xs font-mono text-white leading-relaxed overflow-x-auto">
                     <code>{`curl -X POST ${cleanDomain}/api/key-status \\
   -H "Content-Type: application/json" \\
-  -d '{"key": "opm-live-5x-9f8a3c2e1b4d7f0a"}'`}</code>
+  -d '{"key": "YOUR_API_KEY"}'`}</code>
                   </pre>
                 </div>
 
@@ -587,14 +587,14 @@ print(response.choices[0].message.content)`}</code>
   "rateLimit": 60,
   "totalRequests": 0,
   "allowedModels": [
-    "claude-opus-4-8",
-    "claude-opus-4-7",
-    "claude-sonnet-4-6",
-    "claude-haiku-4-5-20251001"
+    "claude-3-7-sonnet-20250219",
+    "claude-3-5-sonnet-20241022",
+    "claude-3-opus-20240229",
+    "claude-3-5-haiku-20241022"
   ],
   "key": {
-    "key_token": "opm-live-5x-9f8a3c2e1b4d7f0a",
-    "masked_token": "opm-live-5x-9f...7f0a",
+    "key_token": "opm-live-5x-your_key_here",
+    "masked_token": "opm-live-5x-...a1b2",
     "tier": "5x",
     "percentRemaining": 100,
     "timeRemainingFormatted": "04:59:12",

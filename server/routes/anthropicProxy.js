@@ -83,14 +83,14 @@ export const extractApiKey = (req) => {
 };
 
 // 1. Discovery / Health status endpoint (GET /v1/messages or GET /messages)
-router.get('/messages', (req, res) => {
+router.get(['/messages', '/v1/messages'], (req, res) => {
   let upstreamBase = null;
   try {
     upstreamBase = getUpstreamBase();
   } catch {
     // Unconfigured upstream base
   }
-  const apiDomain = process.env.API_DOMAIN || 'https://api.opuszen.pro';
+  const apiDomain = process.env.API_DOMAIN || 'https://opuszen.pro';
 
   return res.json({
     status: 'ok',
@@ -110,7 +110,7 @@ router.get('/messages', (req, res) => {
 });
 
 // 2. Models listing endpoint (GET /v1/models)
-router.get('/models', async (req, res) => {
+router.get(['/models', '/v1/models'], async (req, res) => {
   let upstreamBase = null;
   try {
     upstreamBase = getUpstreamBase();
@@ -164,7 +164,7 @@ router.get('/models', async (req, res) => {
 });
 
 // 3. Passthrough Anthropic Messages API (POST /v1/messages)
-router.post('/messages', async (req, res) => {
+router.post(['/messages', '/v1/messages'], async (req, res) => {
   const startTime = Date.now();
   let upstreamBase;
   try {
@@ -383,7 +383,7 @@ router.post('/messages', async (req, res) => {
 });
 
 // 4. OpenAI format passthrough (/v1/chat/completions)
-router.post('/chat/completions', async (req, res) => {
+router.post(['/chat/completions', '/v1/chat/completions'], async (req, res) => {
   const startTime = Date.now();
   let upstreamBase;
   try {

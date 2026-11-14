@@ -9,7 +9,7 @@ export const SITE_TITLE = 'OpusZenPro — Claude LLM Proxy & High-Capacity API G
 export const SITE_DESCRIPTION =
   'High-capacity Anthropic Claude API gateway with 5-hour rolling windows, drop-in SDK compatibility, and instant UPI activation in INR.';
 export const CLI_COMMAND = 'npx opuszenpro';
-export const DEFAULT_API_DOMAIN = 'https://api.opuszen.pro';
+export const DEFAULT_API_DOMAIN = 'https://opuszen.pro';
 export const DEFAULT_SITE_URL = 'https://opuszen.pro';
 
 export function getApiDomain(): string {

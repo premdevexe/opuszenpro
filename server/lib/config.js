@@ -74,6 +74,6 @@ export function getApiDomain() {
   if (raw && typeof raw === 'string' && raw.trim()) {
     return raw.trim().replace(/\/+$/, '');
   }
-  return 'https://api.opuszen.pro';
+  return 'https://opuszen.pro';
 }
 

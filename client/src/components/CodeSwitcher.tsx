@@ -12,7 +12,7 @@ const SNIPPETS = [
 npx opuszenpro
 
 # Automatically configures Claude Code, Cursor, and shell environments
-# with https://api.opuszen.pro/v1 and your key!`,
+# with https://opuszen.pro/v1 and your key!`,
   },
   {
     id: 'claudecode',
@@ -23,8 +23,8 @@ npx opuszenpro
 npx opuszenpro
 
 # Or export manually:
-export ANTHROPIC_BASE_URL="https://api.opuszen.pro/v1"
-export ANTHROPIC_API_KEY="opm-live-5x-your_api_key_here"
+export ANTHROPIC_BASE_URL="https://opuszen.pro/v1"
+export ANTHROPIC_API_KEY="YOUR_API_KEY"
 
 # Run Claude Code with full 5-hour rolling capacity
 claude`,
@@ -36,8 +36,8 @@ claude`,
     filename: '.cursorrules / settings.json',
     code: `// In Cursor > Settings > Models > OpenAI/Anthropic API Key
 {
-  "anthropic.overrideBaseUrl": "https://api.opuszen.pro/v1",
-  "anthropic.apiKey": "opm-live-20x-your_api_key_here",
+  "anthropic.overrideBaseUrl": "https://opuszen.pro/v1",
+  "anthropic.apiKey": "YOUR_API_KEY",
   "defaultModel": "claude-3-7-sonnet-20250219"
 }`,
   },
@@ -49,8 +49,8 @@ claude`,
     code: `import anthropic
 
 client = anthropic.Anthropic(
-    api_key="opm-live-5x-your_api_key_here",
-    base_url="https://api.opuszen.pro/v1"  # Drop-in OpusZenPro proxy
+    api_key="YOUR_API_KEY",
+    base_url="https://opuszen.pro/v1"  # Drop-in OpusZenPro proxy
 )
 
 response = client.messages.create(
@@ -69,8 +69,8 @@ print(response.content[0].text)`,
     code: `import Anthropic from '@anthropic-ai/sdk';
 
 const anthropic = new Anthropic({
-  apiKey: 'opm-live-20x-your_api_key_here',
-  baseURL: 'https://api.opuszen.pro/v1', // Unbuffered SSE streaming
+  apiKey: 'YOUR_API_KEY',
+  baseURL: 'https://opuszen.pro/v1', // Unbuffered SSE streaming
 });
 
 const stream = await anthropic.messages.create({
@@ -92,8 +92,8 @@ for await (const chunk of stream) {
     code: `{
   "apiProvider": "anthropic",
   "apiModelId": "claude-3-7-sonnet-20250219",
-  "anthropicBaseUrl": "https://api.opuszen.pro/v1",
-  "apiKey": "opm-live-5x-your_api_key_here"
+  "anthropicBaseUrl": "https://opuszen.pro/v1",
+  "apiKey": "YOUR_API_KEY"
 }`,
   },
   {
@@ -101,9 +101,9 @@ for await (const chunk of stream) {
     name: 'cURL',
     lang: 'bash',
     filename: 'request.sh',
-    code: `curl https://api.opuszen.pro/v1/messages \\
+    code: `curl https://opuszen.pro/v1/messages \\
   -H "content-type: application/json" \\
-  -H "x-api-key: opm-live-5x-your_api_key_here" \\
+  -H "x-api-key: YOUR_API_KEY" \\
   -H "anthropic-version: 2023-06-01" \\
   -d '{
     "model": "claude-3-7-sonnet-20250219",

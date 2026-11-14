@@ -25,7 +25,7 @@ import { getUpstreamBase } from './lib/config.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const API_DOMAIN = process.env.API_DOMAIN || 'https://api.opuszen.pro';
+const API_DOMAIN = process.env.API_DOMAIN || 'https://opuszen.pro';
 
 const getActiveUpstream = () => {
   try {
