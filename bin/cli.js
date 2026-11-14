@@ -97,8 +97,8 @@ function setupClaudeCode(apiKey) {
     settings.env = settings.env || {};
     settings.env.ANTHROPIC_AUTH_TOKEN = apiKey;
     settings.env.ANTHROPIC_BASE_URL = GATEWAY_URL;
-    settings.env.ANTHROPIC_MODEL = settings.env.ANTHROPIC_MODEL || 'claude-opus-4-8';
-    settings.env.ANTHROPIC_DEFAULT_SONNET_MODEL = settings.env.ANTHROPIC_DEFAULT_SONNET_MODEL || 'claude-sonnet-4-6';
+    settings.env.ANTHROPIC_MODEL = settings.env.ANTHROPIC_MODEL || 'claude-sonnet-5-5';
+    settings.env.ANTHROPIC_DEFAULT_SONNET_MODEL = settings.env.ANTHROPIC_DEFAULT_SONNET_MODEL || 'claude-sonnet-5-5';
     settings.env.CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = '1';
     settings.hasCompletedOnboarding = true;
 
