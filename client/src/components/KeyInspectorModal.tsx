@@ -142,32 +142,6 @@ export const KeyInspectorModal: React.FC<KeyInspectorModalProps> = ({
             </button>
           </div>
 
-          {/* Quick Demo Keys */}
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-slate-400">
-            <span>Quick inspect:</span>
-            <button
-              onClick={() => {
-                const sample = 'opm-live-5x-9f8a3c2e1b4d7f0a';
-                setKeyInput(sample);
-                handleInspect(sample);
-              }}
-              className="text-brand-400 hover:underline"
-            >
-              Dev Key (5x)
-            </button>
-            <span>·</span>
-            <button
-              onClick={() => {
-                const sample = 'opm-live-20x-8d7e6f5c4b3a2109';
-                setKeyInput(sample);
-                handleInspect(sample);
-              }}
-              className="text-brand-400 hover:underline"
-            >
-              Agent Key (20x)
-            </button>
-          </div>
-
           {error && (
             <div className="flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 p-3 text-xs text-red-400 font-mono">
               <AlertCircle className="w-4 h-4 shrink-0" />
