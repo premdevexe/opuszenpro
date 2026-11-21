@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, 
   Code2, 
@@ -53,8 +53,48 @@ export const DocsPage: React.FC<DocsPageProps> = ({
   const [copiedSnippetId, setCopiedSnippetId] = useState<string | null>(null);
   const [sdkTab, setSdkTab] = useState<'python' | 'typescript' | 'curl' | 'sse' | 'openai'>('python');
 
-  const cleanDomain = getApiDomain();
-  const v1Base = `${cleanDomain}/v1`;
+  const [apiDomain, setApiDomain] = useState<string>(() => getApiDomain());
+  const [gatewayBase, setGatewayBase] = useState<string>(() => `${getApiDomain()}/v1`);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    // Fetch the real API base URL from the live gateway endpoint
+    const checkEndpoints = [
+      'https://api.opuszen.pro/api/health',
+      '/api/health'
+    ];
+
+    async function fetchRealApiBase() {
+      for (const endpoint of checkEndpoints) {
+        try {
+          const res = await fetch(endpoint);
+          if (!res.ok) continue;
+          const data = await res.json();
+          if (!isMounted || !data) continue;
+
+          if (typeof data.gateway === 'string' && data.gateway.trim()) {
+            const fullGateway = data.gateway.trim().replace(/\/+$/, '');
+            setGatewayBase(fullGateway);
+            const domainOnly = fullGateway.replace(/\/v1\/?$/, '');
+            if (domainOnly) setApiDomain(domainOnly);
+            return;
+          }
+        } catch {
+          // continue fallback
+        }
+      }
+    }
+
+    fetchRealApiBase();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const cleanDomain = apiDomain;
+  const v1Base = gatewayBase;
 
   const copyToClipboard = async (text: string, id: string) => {
     const success = await safeCopyToClipboard(text);

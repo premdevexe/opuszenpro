@@ -194,7 +194,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <span className="text-slate-400">export </span>
                     <span className="text-brand-300">ANTHROPIC_BASE_URL</span>
                     <span className="text-slate-500">=</span>
-                    <span className="text-amber-300">"https://api.opusmax.pro/v1"</span>
+                    <span className="text-amber-300">"https://api.opuszen.pro/v1"</span>
                   </p>
 
                   <div className="pt-2 border-t border-white/5 text-[12px] text-slate-400 space-y-1">
