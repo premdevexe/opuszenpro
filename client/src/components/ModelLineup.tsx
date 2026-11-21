@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Sparkles, ChevronDown, ChevronUp, Copy, Check, ExternalLink } from 'lucide-react';
+import { Sparkles, ChevronDown, ChevronUp, Copy, Check, ExternalLink, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { AnimatedTitle } from './AnimatedTitle';
 import { copyToClipboard } from '../lib/clipboard';
+import { useLiveModels } from '../lib/useLiveModels';
 
 interface ModelInfo {
   name: string;
@@ -95,6 +96,14 @@ const SUPPORTING_MODELS = [
 export const ModelLineup: React.FC = () => {
   const [showAllSupporting, setShowAllSupporting] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const {
+    flagshipModels,
+    supportingModels,
+    totalCount,
+    isLive,
+    isLoading,
+    refresh
+  } = useLiveModels();
 
   const handleCopy = async (id: string) => {
     const success = await copyToClipboard(id);
@@ -109,14 +118,20 @@ export const ModelLineup: React.FC = () => {
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
         {/* Section Header */}
         <header className="max-w-2xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-400">
-            01 — The lineup
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-400">
+              01 — The lineup
+            </p>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              {isLive ? `Live Synced (${totalCount} models)` : 'Auto-Syncing'}
+            </span>
+          </div>
           <AnimatedTitle
             as="h2"
             className="mt-4 text-4xl font-bold leading-[1.02] tracking-[-0.035em] text-white sm:text-5xl"
             lines={[
-              ['15', 'models.', 'One'],
+              [`${totalCount || 29}`, 'models.', 'One'],
               ['endpoint.'],
             ]}
             highlightWords={['One', 'endpoint']}
@@ -128,17 +143,15 @@ export const ModelLineup: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-5 max-w-xl text-[16px] leading-relaxed text-slate-400"
           >
-            Claude <strong className="text-white">Fable 5.1</strong>,{' '}
-            <strong className="text-white">Opus 5.5</strong> and{' '}
-            <strong className="text-white">Sonnet 5</strong> are the newest additions, all on a
-            1M-token window. Every model answers on the same base URL with the same key — switch per
-            request with zero redeployment.
+            Claude <strong className="text-white">Fable 5.2</strong>,{' '}
+            <strong className="text-white">Sonnet 5.5</strong> and{' '}
+            <strong className="text-white">Opus 5.5</strong> are the newest additions, automatically updated from the live gateway. Every model answers on the same base URL with the same key.
           </motion.p>
         </header>
 
         {/* Flagship Model Cards Grid */}
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {FLAGSHIP_MODELS.map((model, idx) => (
+          {flagshipModels.map((model, idx) => (
             <motion.div
               key={model.id}
               initial={{ opacity: 0, y: 22, scale: 0.985 }}
@@ -220,7 +233,7 @@ export const ModelLineup: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {(showAllSupporting ? SUPPORTING_MODELS : SUPPORTING_MODELS.slice(0, 4)).map(
+                {(showAllSupporting ? supportingModels : supportingModels.slice(0, 5)).map(
                   (m) => (
                     <tr
                       key={m.id}
@@ -260,7 +273,7 @@ export const ModelLineup: React.FC = () => {
           <span>
             {showAllSupporting
               ? 'Hide supporting models'
-              : `Show all ${SUPPORTING_MODELS.length} supporting models`}
+              : `Show all ${supportingModels.length} supporting models`}
           </span>
           {showAllSupporting ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
         </button>

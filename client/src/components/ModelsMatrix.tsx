@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Check, Sparkles, Zap, Shield, Cpu, ExternalLink } from 'lucide-react';
+import { useLiveModels } from '../lib/useLiveModels';
 
 const MODELS_DATA = [
   {
@@ -77,12 +78,40 @@ const MODELS_DATA = [
 ];
 
 export const ModelsMatrix: React.FC = () => {
+  const { models, isLive, totalCount } = useLiveModels();
+
+  const combinedModels = useMemo(() => {
+    const existingIds = new Set(MODELS_DATA.map((d) => d.id));
+    const dynamicItems = models
+      .filter((m) => !existingIds.has(m.id) && !m.id.endsWith('[1m]'))
+      .map((m) => ({
+        name: m.name,
+        id: m.id,
+        badge: m.badge || 'Live Model',
+        context: m.context,
+        speed: 'High (SSE unbuffered)',
+        reasoning: m.id.includes('fable')
+          ? 'Frontier Agentic Reasoning'
+          : m.id.includes('opus')
+          ? 'Deep Reflection & Thought'
+          : m.id.includes('sonnet')
+          ? 'Fast Hybrid Reasoning'
+          : 'Sub-second Inference',
+        vision: true,
+        caching: true,
+        tools: true,
+        bestFor: m.description,
+      }));
+
+    return [...MODELS_DATA, ...dynamicItems];
+  }, [models]);
+
   return (
     <div id="models" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-mono mb-3">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Full Anthropic Model Lineup</span>
+          <span>Full Anthropic Model Lineup ({combinedModels.length} Models {isLive ? '• Auto-Synced' : ''})</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
           Every Claude Model. <span className="text-gradient-orange">Zero Tier Gating</span>.
@@ -105,7 +134,7 @@ export const ModelsMatrix: React.FC = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/[0.05]">
-            {MODELS_DATA.map((m) => (
+            {combinedModels.map((m) => (
               <tr key={m.id} className="hover:bg-white/[0.02] transition-colors">
                 <td className="py-4 px-6">
                   <div className="font-bold text-white font-mono text-sm">{m.name}</div>

@@ -3,22 +3,26 @@ import { ArrowRight, Check, Copy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedTitle } from './AnimatedTitle';
 import { copyToClipboard } from '../lib/clipboard';
+import { useLiveModels } from '../lib/useLiveModels';
 
 interface HeroProps {
   onOpenRegister: () => void;
 }
 
-const MODELS = [
-  'claude-fable-5-1',
+const FALLBACK_MODELS = [
+  'claude-fable-5-2',
+  'claude-sonnet-5-5',
   'claude-opus-5-5',
-  'claude-sonnet-5',
-  'claude-fable-5',
-  'claude-opus-5',
+  'claude-haiku-5-5',
+  'claude-fable-5-1',
+  'claude-3-7-sonnet-20250219',
 ];
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenRegister,
 }) => {
+  const { modelIds, totalCount } = useLiveModels();
+  const tickerModels = modelIds && modelIds.length > 0 ? modelIds : FALLBACK_MODELS;
   const [activeModelIdx, setActiveModelIdx] = useState(0);
   const [copied, setCopied] = useState(false);
   const [typedText, setTypedText] = useState('');
@@ -40,11 +44,12 @@ export const Hero: React.FC<HeroProps> = ({
 
   // Model ticker roll
   useEffect(() => {
+    if (!tickerModels.length) return;
     const timer = setInterval(() => {
-      setActiveModelIdx((prev) => (prev + 1) % MODELS.length);
+      setActiveModelIdx((prev) => (prev + 1) % tickerModels.length);
     }, 2800);
     return () => clearInterval(timer);
-  }, []);
+  }, [tickerModels.length]);
 
   const handleCopy = async () => {
     const success = await copyToClipboard(fullCommand);
@@ -78,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
                 </span>
-                <span>New — Fable 5.2 &amp; Sonnet 5.5, live</span>
+                <span>New — {totalCount || 29} Frontier Models Live</span>
               </span>
             </motion.div>
 
@@ -223,7 +228,7 @@ export const Hero: React.FC<HeroProps> = ({
                           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                           className="text-brand-400 font-bold inline-block"
                         >
-                          {MODELS[activeModelIdx]}
+                          {tickerModels[activeModelIdx % tickerModels.length]}
                         </motion.span>
                       </AnimatePresence>
                     </span>
