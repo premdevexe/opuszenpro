@@ -4,13 +4,22 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
   
   body {
+    background-color: #fafbfc;
+    color: #09090b;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.dark body {
     background-color: #07080c;
     color: #f1f5f9;
-    font-family: 'Inter', system-ui, sans-serif;
   }
 }
 

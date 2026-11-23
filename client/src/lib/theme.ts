@@ -3,29 +3,23 @@ import { useState, useEffect } from 'react';
 export type Theme = 'dark' | 'light' | 'dim';
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = (
-      localStorage.getItem('opuszenpro_theme') ||
-      localStorage.getItem('opuszenvix_theme') ||
-      localStorage.getItem('opuszyra_theme') ||
-      localStorage.getItem('opusmax_theme')
-    ) as Theme | null;
-    if (saved === 'light' || saved === 'dark' || saved === 'dim') return saved;
-    return 'dark';
-  });
+  // Always open in White Mode ('light') by default
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('light', 'dark', 'dim');
-    if (theme === 'light') {
-      root.classList.add('light');
+    if (theme === 'dark') {
+      root.classList.add('dark');
     } else if (theme === 'dim') {
       root.classList.add('dark', 'dim');
     } else {
-      root.classList.add('dark');
+      root.classList.add('light');
     }
     root.setAttribute('data-theme', theme);
-    localStorage.setItem('opuszenpro_theme', theme);
+    try {
+      localStorage.setItem('opuszenpro_theme', theme);
+    } catch {}
   }, [theme]);
 
   const toggleTheme = (e?: React.MouseEvent) => {

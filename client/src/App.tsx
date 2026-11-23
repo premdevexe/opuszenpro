@@ -196,7 +196,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#07080c] text-slate-100 flex flex-col font-sans selection:bg-brand-500/30 selection:text-brand-300">
+    <div className="min-h-screen bg-[#fafbfc] dark:bg-[#07080c] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-brand-500/30 selection:text-brand-300">
       {/* Navbar with Pricing, Docs, Status & Check Usage (last button next to Theme Toggle) */}
       <Navbar
         onOpenPricing={() => handleNavigate('pricing')}
