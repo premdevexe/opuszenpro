@@ -64,7 +64,9 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Background Grid Veil as seen on opusmax.live */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="grid-veil absolute inset-0 opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"></div>
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-brand-500/10 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
+        {/* Dual Ambient Glow: Primary Brand Orange on left + Secondary Cyan (#00D0FE) on right */}
+        <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[400px] bg-brand-500/10 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
+        <div className="absolute top-1/4 right-1/4 translate-x-1/4 -translate-y-1/4 w-[450px] h-[350px] bg-[#00D0FE]/12 rounded-full blur-[140px] -z-10 pointer-events-none"></div>
       </div>
 
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10 relative">

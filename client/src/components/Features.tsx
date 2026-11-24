@@ -113,14 +113,14 @@ export const Features: React.FC = () => {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.55, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-white/[0.08] bg-dark-900/60 p-6 backdrop-blur-sm transition-colors hover:border-brand-500/40 hover:bg-dark-850/80"
+            className="group relative flex h-full flex-col justify-between overflow-hidden rounded-xl border border-white/[0.08] bg-dark-900/60 p-6 backdrop-blur-sm transition-colors hover:border-[#00D0FE]/40 hover:bg-dark-850/80"
           >
             <span
               aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-[2.5px] bg-brand-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-400"
+              className="absolute inset-x-0 top-0 h-[2.5px] bg-[#00D0FE] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-400"
             ></span>
             <div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/15 text-brand-400">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#00D0FE]/15 text-[#00D0FE]">
                 <Radio className="h-5 w-5" />
               </div>
               <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-white">
@@ -135,7 +135,7 @@ export const Features: React.FC = () => {
             {/* Exact SVG Animated Sine Wave */}
             <div className="mt-6 pt-4 border-t border-white/5 relative h-20 flex items-center justify-center">
               <svg
-                className="h-16 w-full text-brand-500"
+                className="h-16 w-full text-[#00D0FE]"
                 viewBox="0 0 400 64"
                 fill="none"
                 preserveAspectRatio="none"

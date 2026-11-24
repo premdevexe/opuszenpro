@@ -122,8 +122,8 @@ export const ModelLineup: React.FC = () => {
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-400">
               01 — The lineup
             </p>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-[#00D0FE]/10 text-[#00D0FE] border border-[#00D0FE]/25">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00D0FE] animate-pulse"></span>
               {isLive ? `Live Synced (${totalCount} models)` : 'Auto-Syncing'}
             </span>
           </div>
