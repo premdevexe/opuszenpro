@@ -64,7 +64,7 @@
 
 .terminal-3d:hover {
   transform: perspective(1200px) translateY(-5px) rotateX(2deg);
-  box-shadow: 0 25px 60px -15px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 25px 60px -15px rgba(0, 208, 254, 0.25);
 }
 
 @keyframes floatTerminal {
@@ -138,21 +138,18 @@
 }
 
 /* Gradients */
-.text-gradient-orange {
-  background: linear-gradient(135deg, #fed7aa 0%, #f97316 50%, #ea580c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
+.text-gradient-primary,
+.text-gradient-orange,
 .text-gradient-secondary,
 .text-gradient-cyan {
-  background: linear-gradient(135deg, #7ae2fe 0%, #00D0FE 50%, #0087b3 100%);
+  background: linear-gradient(135deg, #b8eeff 0%, #00D0FE 50%, #0090b2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.glow-brand,
 .glow-secondary {
-  box-shadow: 0 0 25px -4px rgba(0, 208, 254, 0.45);
+  box-shadow: 0 0 25px -4px rgba(0, 208, 254, 0.5);
 }
 
 /* Custom scrollbars */
@@ -453,12 +450,19 @@ html.light pre .text-emerald-400 {
   color: #34d399 !important;
 }
 
-/* 6. Buttons with colored backgrounds: Keep text white */
+/* 6. Buttons with colored backgrounds: Keep text high-contrast */
+html.light button.bg-\[\#00D0FE\],
+html.light button.bg-brand-500,
+html.light button.bg-brand-600,
+html.light a.bg-\[\#00D0FE\],
+html.light a.bg-brand-500,
+html.light a.bg-brand-600 {
+  color: #020617 !important;
+}
+
 html.light button.bg-\[\#EA580C\],
 html.light button.bg-orange-500,
 html.light button.bg-orange-600,
-html.light button.bg-brand-500,
-html.light button.bg-brand-600,
 html.light button[class*="bg-orange"],
 html.light button[class*="bg-brand"],
 html.light button[class*="bg-[#EA580C]"],
@@ -502,12 +506,12 @@ html.light #mobile-nav-drawer .border-white\/5 {
 }
 
 html.light #mobile-nav-drawer button:hover {
-  color: #ea580c !important;
+  color: #00D0FE !important;
 }
 
 html.light #mobile-nav-drawer .text-brand-400,
 html.light #mobile-nav-drawer .text-brand-500 {
-  color: #ea580c !important;
+  color: #00D0FE !important;
 }
 
 html.light #mobile-nav-drawer .text-emerald-400,
@@ -562,7 +566,7 @@ html.light .fixed textarea::placeholder {
 
 /* Visible Focus Indicator for Keyboard Navigation */
 :focus-visible {
-  outline: 2px solid #f97316 !important;
+  outline: 2px solid #00D0FE !important;
   outline-offset: 2px !important;
 }
 
@@ -571,7 +575,7 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #f97316 !important;
+  outline: 2px solid #00D0FE !important;
   outline-offset: 2px !important;
 }
 

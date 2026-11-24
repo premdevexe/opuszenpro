@@ -115,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="h-9 w-9 sm:h-10 sm:w-10 rounded-full object-contain transition-transform group-hover:scale-105 shadow-sm"
           />
           <span className="text-[17px] sm:text-[18px] font-bold tracking-tight text-white font-mono">
-            Opus<span className="text-brand-500">zen</span><span className="text-[#00D0FE]">pro</span>
+            Opus<span className="text-[#00D0FE]">ZenPro</span>
           </span>
         </button>
 

@@ -118,12 +118,12 @@ export const DocsPage: React.FC<DocsPageProps> = ({
         
         {/* Header Hero */}
         <div className="mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-500/20 bg-orange-500/10 text-xs font-semibold text-[#EA580C] mb-4 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00D0FE]/20 bg-[#00D0FE]/10 text-xs font-semibold text-[#00D0FE] mb-4 shadow-xs">
             <BookOpen className="w-3.5 h-3.5" />
             <span>Developer Documentation &amp; AI Gateway</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-3">
-            <span className="text-[#EA580C]">OpusZenPro</span> API &amp; Gateway Docs
+            <span className="text-[#00D0FE]">OpusZenPro</span> API &amp; Gateway Docs
           </h1>
           <p className="text-stone-600 dark:text-stone-400 text-base max-w-3xl leading-relaxed">
             High-performance Anthropic Claude &amp; OpenAI compatible AI API gateway with real-time token status inspections, sub-20ms latency, and zero-buffering SSE token streaming.
@@ -140,7 +140,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                 onClick={() => scrollToSection(sec.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-[#EA580C] text-white shadow-md'
+                    ? 'bg-[#00D0FE] text-slate-950 font-bold shadow-md'
                     : 'bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white'
                 }`}
               >
@@ -156,7 +156,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
           {/* Left Sidebar Navigation */}
           <aside className="hidden lg:block w-64 shrink-0">
             <nav className="sticky top-24 space-y-1 bg-[#FDFCFB] dark:bg-[#121110] border border-[#E7E2D8] dark:border-[#262422] rounded-3xl p-4 shadow-sm" aria-label="Documentation navigation">
-              <p className="text-xs font-bold text-[#EA580C] uppercase tracking-wider px-3 mb-3">
+              <p className="text-xs font-bold text-[#00D0FE] uppercase tracking-wider px-3 mb-3">
                 Documentation Index
               </p>
               {SECTIONS.map((sec) => {
@@ -167,7 +167,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                     onClick={() => scrollToSection(sec.id)}
                     className={`block w-full text-left text-xs font-semibold px-3 py-2.5 rounded-xl transition-all cursor-pointer ${
                       isActive
-                        ? 'bg-[#EA580C] text-white shadow-md'
+                        ? 'bg-[#00D0FE] text-slate-950 font-bold shadow-md'
                         : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
@@ -184,12 +184,12 @@ export const DocsPage: React.FC<DocsPageProps> = ({
             {/* 1. OVERVIEW */}
             <section id="overview" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Overview
               </h2>
               <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6 text-sm">
                 OpusZenPro is an ultra-low latency, Anthropic-compatible AI API gateway. Developers can point their tools (Claude Code, Cursor, Windsurf, Cline, Roo Code, and official SDKs) directly to your gateway domain:{' '}
-                <code className="text-xs font-mono bg-orange-500/10 text-[#EA580C] px-1.5 py-0.5 rounded font-bold border border-orange-500/20">
+                <code className="text-xs font-mono bg-[#00D0FE]/10 text-[#00D0FE] px-1.5 py-0.5 rounded font-bold border border-[#00D0FE]/20">
                   {v1Base}
                 </code>.
               </p>
@@ -198,15 +198,15 @@ export const DocsPage: React.FC<DocsPageProps> = ({
             {/* 2. QUICK START */}
             <section id="quick-start" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Quick Start
               </h2>
 
               {/* 1-Step CLI Setup Card */}
-              <div className="p-6 rounded-3xl border-2 border-orange-500/30 bg-orange-500/[0.04] mb-8 shadow-sm">
+              <div className="p-6 rounded-3xl border-2 border-[#00D0FE]/30 bg-[#00D0FE]/[0.04] mb-8 shadow-sm">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold bg-[#EA580C] text-white px-2.5 py-1 rounded-lg">Recommended</span>
+                    <span className="text-xs font-bold bg-[#00D0FE] text-slate-950 px-2.5 py-1 rounded-lg">Recommended</span>
                     <span className="text-sm font-bold text-stone-900 dark:text-white">1-Step CLI Setup</span>
                   </div>
                   <span className="text-xs text-stone-500 font-mono">Zero config needed</span>
@@ -216,7 +216,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                 </p>
 
                 <div className="dark-code-box relative group rounded-2xl border border-[#262320] bg-[#0F0E0D] overflow-hidden shadow-md">
-                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
+                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#00D0FE] bg-[#141312] font-semibold flex items-center justify-between">
                     <span>terminal</span>
                     <button
                       onClick={() => copyToClipboard('npx opuszenpro', 'cli-quickstart')}
@@ -238,7 +238,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
               </p>
 
               <div className="dark-code-box relative group rounded-2xl border border-[#262320] bg-[#0F0E0D] overflow-hidden mb-6 shadow-md">
-                <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
+                <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#00D0FE] bg-[#141312] font-semibold flex items-center justify-between">
                   <span>bash</span>
                   <button
                     onClick={() => copyToClipboard(`export ANTHROPIC_BASE_URL="${v1Base}"\nexport ANTHROPIC_API_KEY="YOUR_API_KEY"`, 'env-quickstart')}
@@ -257,21 +257,21 @@ export const DocsPage: React.FC<DocsPageProps> = ({
             {/* 4. IDE CONFIGURATION */}
             <section id="ide-configuration" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 IDE Configuration
               </h2>
 
               {/* Claude Code CLI */}
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold bg-[#EA580C] text-white px-2.5 py-1 rounded-lg">Claude Code</span>
+                  <span className="text-xs font-bold bg-[#00D0FE] text-slate-950 px-2.5 py-1 rounded-lg">Claude Code</span>
                   <span className="text-xs text-stone-500">Official CLI &amp; VS Code Extension</span>
                 </div>
                 <p className="text-xs text-stone-600 dark:text-stone-400 mb-3">
                   Add or edit your settings file located at <code className="font-mono bg-stone-100 dark:bg-[#1A1918] px-1.5 py-0.5 rounded">~/.claude/settings.json</code>:
                 </p>
                 <div className="dark-code-box relative group rounded-2xl border border-[#262320] bg-[#0F0E0D] overflow-hidden shadow-md">
-                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
+                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#00D0FE] bg-[#141312] font-semibold flex items-center justify-between">
                     <span>json</span>
                     <button
                       onClick={() => copyToClipboard(`{\n  "env": {\n    "ANTHROPIC_AUTH_TOKEN": "YOUR_API_KEY",\n    "ANTHROPIC_BASE_URL": "${v1Base}",\n    "ANTHROPIC_MODEL": "claude-fable-5-2",\n    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5-5",\n    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"\n  },\n  "hasCompletedOnboarding": true\n}`, 'claude-settings')}
@@ -290,7 +290,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
               {/* Cursor */}
               <div className="mb-8">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-bold border border-[#E7E2D8] dark:border-[#262422] text-[#EA580C] bg-orange-500/10 px-2.5 py-1 rounded-lg">Cursor</span>
+                  <span className="text-xs font-bold border border-[#E7E2D8] dark:border-[#262422] text-[#00D0FE] bg-[#00D0FE]/10 px-2.5 py-1 rounded-lg">Cursor</span>
                   <span className="text-xs text-stone-500">Settings → Models → OpenAI / Anthropic</span>
                 </div>
                 <p className="text-xs text-stone-600 dark:text-stone-400 mb-3">
@@ -299,7 +299,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                 <div className="space-y-2 text-xs font-mono mb-2">
                   <div className="flex items-center gap-3 p-3 rounded-xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                     <span className="text-stone-500 w-28 shrink-0">Base URL</span>
-                    <code className="text-[#EA580C] font-bold">{v1Base}</code>
+                    <code className="text-[#00D0FE] font-bold">{v1Base}</code>
                   </div>
                   <div className="flex items-center gap-3 p-3 rounded-xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                     <span className="text-stone-500 w-28 shrink-0">API Key</span>
@@ -307,7 +307,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                   </div>
                   <div className="flex items-center gap-3 p-3 rounded-xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                     <span className="text-stone-500 w-28 shrink-0">Model Names</span>
-                    <code className="text-[#EA580C] font-bold">claude-fable-5-2, claude-sonnet-5-5, claude-opus-5-5, claude-haiku-5-5, claude-3-7-sonnet-20250219</code>
+                    <code className="text-[#00D0FE] font-bold">claude-fable-5-2, claude-sonnet-5-5, claude-opus-5-5, claude-haiku-5-5, claude-3-7-sonnet-20250219</code>
                   </div>
                 </div>
               </div>
@@ -316,7 +316,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="p-4 rounded-2xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-bold text-[#EA580C]">Windsurf</span>
+                    <span className="text-xs font-bold text-[#00D0FE]">Windsurf</span>
                     <span className="text-[11px] text-stone-400">Codeium AI Editor</span>
                   </div>
                   <p className="text-xs text-stone-500 mb-2">Custom Anthropic Base URL:</p>
@@ -327,7 +327,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
 
                 <div className="p-4 rounded-2xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-bold text-[#EA580C]">Cline / Roo Code</span>
+                    <span className="text-xs font-bold text-[#00D0FE]">Cline / Roo Code</span>
                     <span className="text-[11px] text-stone-400">VS Code Extension</span>
                   </div>
                   <p className="text-xs text-stone-500 mb-2">Select Provider <strong>Anthropic</strong>:</p>
@@ -341,11 +341,11 @@ export const DocsPage: React.FC<DocsPageProps> = ({
             {/* 5. SDKS & CODE EXAMPLES */}
             <section id="sdks-examples" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 SDKs &amp; Code Examples
               </h2>
               <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6 text-xs sm:text-sm">
-                OpusZenPro is fully compatible with standard Anthropic and OpenAI SDKs. Requests are routed through <code className="font-mono text-[#EA580C]">{v1Base}</code>.
+                OpusZenPro is fully compatible with standard Anthropic and OpenAI SDKs. Requests are routed through <code className="font-mono text-[#00D0FE]">{v1Base}</code>.
               </p>
 
               {/* Code Tab Switcher */}
@@ -362,7 +362,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
                     onClick={() => setSdkTab(t.key as any)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                       sdkTab === t.key
-                        ? 'bg-[#EA580C] text-white shadow-sm'
+                        ? 'bg-[#00D0FE] text-slate-950 font-bold shadow-sm'
                         : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
@@ -373,7 +373,7 @@ export const DocsPage: React.FC<DocsPageProps> = ({
 
               {/* Code Block by Tab */}
               <div className="dark-code-box relative group rounded-3xl border border-[#262320] bg-[#0F0E0D] overflow-hidden shadow-2xl">
-                <div className="px-5 py-3 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
+                <div className="px-5 py-3 border-b border-[#262320] text-xs font-mono text-[#00D0FE] bg-[#141312] font-semibold flex items-center justify-between">
                   <span>{sdkTab === 'curl' ? 'bash' : sdkTab}</span>
                   <button
                     onClick={() => {
@@ -488,19 +488,19 @@ print(response.choices[0].message.content)`}</code>
             {/* 6. API REFERENCE */}
             <section id="api-reference" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 API Reference
               </h2>
 
-              <div className="mb-6 p-5 rounded-2xl border border-[#EA580C]/30 bg-orange-500/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="mb-6 p-5 rounded-2xl border border-[#00D0FE]/30 bg-[#00D0FE]/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <span className="text-[11px] font-bold text-[#EA580C] uppercase tracking-wider block mb-1">Your Gateway Base URL</span>
-                  <code className="text-base font-mono font-bold text-stone-900 dark:text-white bg-white/50 dark:bg-black/50 px-2.5 py-1 rounded border border-orange-500/20 select-all">
+                  <span className="text-[11px] font-bold text-[#00D0FE] uppercase tracking-wider block mb-1">Your Gateway Base URL</span>
+                  <code className="text-base font-mono font-bold text-stone-900 dark:text-white bg-white/50 dark:bg-black/50 px-2.5 py-1 rounded border border-[#00D0FE]/20 select-all">
                     {cleanDomain}
                   </code>
                 </div>
                 <div className="text-xs text-stone-500">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/10 text-[#EA580C] font-semibold border border-orange-500/20">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#00D0FE]/10 text-[#00D0FE] font-semibold border border-[#00D0FE]/20">
                     Service: Operational &amp; Active
                   </span>
                   <p className="mt-1 text-[11px]">Supports both /v1/ and /api/v1/ endpoints</p>
@@ -514,10 +514,10 @@ print(response.choices[0].message.content)`}</code>
                 <div className="p-5 rounded-2xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#EA580C] text-white">POST</span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#00D0FE] text-slate-950 font-bold">POST</span>
                       <code className="text-sm font-mono font-bold text-stone-900 dark:text-white">/v1/messages</code>
                     </div>
-                    <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{v1Base}/messages</code>
+                    <code className="text-xs font-mono text-[#00D0FE] bg-[#00D0FE]/10 px-2 py-0.5 rounded select-all">{v1Base}/messages</code>
                   </div>
                   <p className="text-xs text-stone-500 mb-3">Create a message completion. Supports text generation, multi-turn chat, system prompts, vision, and real-time SSE streaming.</p>
                   
@@ -535,7 +535,7 @@ print(response.choices[0].message.content)`}</code>
                       <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200 font-mono">GET</span>
                       <code className="text-sm font-mono font-bold text-stone-900 dark:text-white">/v1/models</code>
                     </div>
-                    <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{v1Base}/models</code>
+                    <code className="text-xs font-mono text-[#00D0FE] bg-[#00D0FE]/10 px-2 py-0.5 rounded select-all">{v1Base}/models</code>
                   </div>
                   <p className="text-xs text-stone-500 mb-2">List all active supported models (Claude Fable 5.2, Claude Sonnet 5.5, Claude Opus 5.5, Claude Haiku 5.5, Claude 3.7 Sonnet, Claude 3.5 Sonnet v2, etc.).</p>
                 </div>
@@ -544,10 +544,10 @@ print(response.choices[0].message.content)`}</code>
                 <div className="p-5 rounded-2xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312]">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#EA580C] text-white">POST</span>
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#00D0FE] text-slate-950 font-bold">POST</span>
                       <code className="text-sm font-mono font-bold text-stone-900 dark:text-white">/v1/chat/completions</code>
                     </div>
-                    <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{v1Base}/chat/completions</code>
+                    <code className="text-xs font-mono text-[#00D0FE] bg-[#00D0FE]/10 px-2 py-0.5 rounded select-all">{v1Base}/chat/completions</code>
                   </div>
                   <p className="text-xs text-stone-500 mb-2">OpenAI-compatible chat completion endpoint. Seamless drop-in for OpenAI client libraries.</p>
                 </div>
@@ -559,7 +559,7 @@ print(response.choices[0].message.content)`}</code>
                       <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200 font-mono">GET</span>
                       <code className="text-sm font-mono font-bold text-stone-900 dark:text-white">/api/status</code>
                     </div>
-                    <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{cleanDomain}/api/status</code>
+                    <code className="text-xs font-mono text-[#00D0FE] bg-[#00D0FE]/10 px-2 py-0.5 rounded select-all">{cleanDomain}/api/status</code>
                   </div>
                   <p className="text-xs text-stone-500 mb-2">System health &amp; gateway latency status. Reports operational status of proxy routing, gateway latency, and cluster nodes.</p>
                 </div>
@@ -570,7 +570,7 @@ print(response.choices[0].message.content)`}</code>
             {/* 7. TOKEN STATUS & QUOTA API */}
             <section id="token-status-api" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Token Status &amp; Quota API
               </h2>
               <p className="text-stone-600 dark:text-stone-400 leading-relaxed mb-6 text-sm">
@@ -581,11 +581,11 @@ print(response.choices[0].message.content)`}</code>
               <div className="p-5 rounded-2xl border border-[#E7E2D8] dark:border-[#262422] bg-[#FDFCFB] dark:bg-[#141312] mb-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#EA580C] text-white">POST</span>
+                    <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-[#00D0FE] text-slate-950 font-bold">POST</span>
                     <span className="text-xs font-bold px-2 py-0.5 rounded-md bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300">GET</span>
                     <code className="text-sm font-mono font-bold text-stone-900 dark:text-white">/api/key-status</code>
                   </div>
-                  <code className="text-xs font-mono text-[#EA580C] bg-orange-500/10 px-2 py-0.5 rounded select-all">{cleanDomain}/api/key-status</code>
+                  <code className="text-xs font-mono text-[#00D0FE] bg-[#00D0FE]/10 px-2 py-0.5 rounded select-all">{cleanDomain}/api/key-status</code>
                 </div>
                 <p className="text-xs text-stone-500 mb-4">
                   Pass your key via JSON body <code className="font-mono bg-stone-100 dark:bg-[#1A1918] px-1 py-0.5 rounded">{`{ "key": "..." }`}</code>, Query parameter <code className="font-mono bg-stone-100 dark:bg-[#1A1918] px-1 py-0.5 rounded">?key=YOUR_KEY</code>, or Header <code className="font-mono bg-stone-100 dark:bg-[#1A1918] px-1 py-0.5 rounded">Authorization: Bearer YOUR_KEY</code>.
@@ -593,7 +593,7 @@ print(response.choices[0].message.content)`}</code>
 
                 {/* Example Request Snippet */}
                 <div className="dark-code-box relative group rounded-xl border border-[#262320] bg-[#0F0E0D] overflow-hidden mb-4">
-                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#EA580C] bg-[#141312] font-semibold flex items-center justify-between">
+                  <div className="px-4 py-2 border-b border-[#262320] text-xs font-mono text-[#00D0FE] bg-[#141312] font-semibold flex items-center justify-between">
                     <span>cURL Request</span>
                     <button
                       onClick={() => copyToClipboard(`curl -X POST ${cleanDomain}/api/key-status \\\n  -H "Content-Type: application/json" \\\n  -d '{"key": "YOUR_API_KEY"}'`, 'curl-key-status')}
@@ -650,7 +650,7 @@ print(response.choices[0].message.content)`}</code>
             {/* 8. ERROR CODES */}
             <section id="error-codes" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Error Codes &amp; Status
               </h2>
 
@@ -697,7 +697,7 @@ print(response.choices[0].message.content)`}</code>
             {/* 9. BUILT-IN TOOLS */}
             <section id="built-in-tools" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Built-in Tools
               </h2>
               <p className="text-stone-600 dark:text-stone-400 mb-6 text-xs sm:text-sm">
@@ -738,7 +738,7 @@ print(response.choices[0].message.content)`}</code>
             {/* 10. TROUBLESHOOTING & FAQ */}
             <section id="troubleshooting" className="scroll-mt-24">
               <h2 className="text-2xl font-bold mb-4 pb-3 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center gap-3">
-                <span className="w-1.5 h-6 rounded-full bg-[#EA580C]" />
+                <span className="w-1.5 h-6 rounded-full bg-[#00D0FE]" />
                 Troubleshooting &amp; FAQ
               </h2>
 
@@ -773,8 +773,8 @@ print(response.choices[0].message.content)`}</code>
               </div>
 
               {/* Bottom Support Callout */}
-              <div className="p-6 rounded-3xl bg-orange-500/10 border border-orange-500/20 text-center">
-                <h3 className="text-base font-bold text-[#EA580C] mb-1">
+              <div className="p-6 rounded-3xl bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-center">
+                <h3 className="text-base font-bold text-[#00D0FE] mb-1">
                   Ready to build with OpusZenPro?
                 </h3>
                 <p className="text-xs text-stone-600 dark:text-stone-400 mb-4">
@@ -783,7 +783,7 @@ print(response.choices[0].message.content)`}</code>
                 {onOpenPricing && (
                   <button
                     onClick={onOpenPricing}
-                    className="px-5 py-2.5 rounded-xl bg-[#EA580C] text-white text-xs font-bold hover:bg-[#D94E0A] transition shadow-md"
+                    className="px-5 py-2.5 rounded-xl bg-[#00D0FE] text-slate-950 font-bold text-xs font-bold hover:bg-[#00b5de] transition shadow-md"
                   >
                     View Pricing &amp; Plans
                   </button>

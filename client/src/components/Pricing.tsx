@@ -13,19 +13,19 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
   return (
     <div id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center max-w-3xl mx-auto mb-14">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#EA580C] text-xs font-mono mb-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] text-xs font-mono mb-3">
           <Zap className="w-3.5 h-3.5" />
           <span>Transparent AI API Pricing • Zero Hidden Fees</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-stone-900 dark:text-white tracking-tight">
-          High-Multiplier Plans. <span className="text-[#EA580C]">Instant Key Delivery</span>.
+          High-Multiplier Plans. <span className="text-[#00D0FE]">Instant Key Delivery</span>.
         </h2>
         <p className="text-base sm:text-lg text-stone-600 dark:text-stone-400 mt-4 leading-relaxed">
           Never wait 24 hours again. Enjoy rolling 5-hour window replenishment, full SSE streaming, and 100% free prompt caching reads.
         </p>
 
         {/* INR Badge */}
-        <div className="mt-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#EA580C] text-xs font-bold font-mono">
+        <div className="mt-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] text-xs font-bold font-mono">
           <span>₹ INR Pricing • Pay via UPI (GPay / PhonePe / Paytm / BHIM) &amp; Cards</span>
         </div>
       </div>
@@ -80,7 +80,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                   "Works with Claude Code, Cursor, VS Code, Windsurf"
                 ].map((feature, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-[#44403C] dark:text-[#D6D3D1]">
-                    <Check className="w-4 h-4 text-[#EA580C] mt-0.5 shrink-0 stroke-[2.5]" />
+                    <Check className="w-4 h-4 text-[#00D0FE] mt-0.5 shrink-0 stroke-[2.5]" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -90,8 +90,8 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
         </div>
 
         {/* CARD 2: 20x Plan (Featured) */}
-        <div className="dark-box rounded-3xl p-7 relative transition-all duration-200 flex flex-col justify-between bg-[#0F0E0D] border-2 border-[#262320] text-[#F5F2EB] shadow-2xl ring-1 ring-orange-500/20 lg:-translate-y-2">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#EA580C] text-white text-[10px] font-black uppercase tracking-widest shadow-md">
+        <div className="dark-box rounded-3xl p-7 relative transition-all duration-200 flex flex-col justify-between bg-[#0F0E0D] border-2 border-[#262320] text-[#F5F2EB] shadow-2xl ring-1 ring-[#00D0FE]/30 lg:-translate-y-2">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#00D0FE] text-slate-950 text-[10px] font-black uppercase tracking-widest shadow-md">
             Most Popular
           </div>
 
@@ -114,7 +114,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
               <button
                 type="button"
                 onClick={() => onSelectPlan('20x')}
-                className="w-full py-3.5 px-4 rounded-xl text-sm font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer bg-[#EA580C] hover:bg-[#D94E0A] text-white shadow-lg shadow-orange-600/25 active:scale-[0.99]"
+                className="w-full py-3.5 px-4 rounded-xl text-sm font-extrabold flex items-center justify-center gap-2 transition-all cursor-pointer bg-[#00D0FE] hover:bg-[#00b5de] text-slate-950 shadow-lg shadow-[#00D0FE]/25 active:scale-[0.99]"
               >
                 <span>Get this plan →</span>
               </button>
@@ -143,7 +143,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                   "Priority support"
                 ].map((feature, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-[#D6D3D1]">
-                    <Check className="w-4 h-4 text-[#EA580C] mt-0.5 shrink-0 stroke-[2.5]" />
+                    <Check className="w-4 h-4 text-[#00D0FE] mt-0.5 shrink-0 stroke-[2.5]" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -199,7 +199,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                   "Works with Claude Code, Cursor, VS Code, Windsurf"
                 ].map((feature, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-xs font-medium text-[#44403C] dark:text-[#D6D3D1]">
-                    <Check className="w-4 h-4 text-[#EA580C] mt-0.5 shrink-0 stroke-[2.5]" />
+                    <Check className="w-4 h-4 text-[#00D0FE] mt-0.5 shrink-0 stroke-[2.5]" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -213,7 +213,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
       {/* Bottom WhatsApp / INR Banner */}
       <div className="text-center py-4 px-6 rounded-2xl bg-[#F4EFEC] dark:bg-[#1A1918] border border-[#E8E3D9] dark:border-[#2B2724] max-w-3xl mx-auto shadow-sm">
         <p className="text-xs text-[#78716C] dark:text-[#A8A29E] font-medium flex items-center justify-center gap-1.5 flex-wrap">
-          <CreditCard className="w-4 h-4 text-[#EA580C] shrink-0" />
+          <CreditCard className="w-4 h-4 text-[#00D0FE] shrink-0" />
           <span>Paid in INR (UPI / GPay / PhonePe / Cards).</span>
           {whatsappUrl ? (
             <>
@@ -222,7 +222,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#EA580C] hover:underline font-bold inline-flex items-center gap-1"
+                className="text-[#00D0FE] hover:underline font-bold inline-flex items-center gap-1"
               >
                 <MessageCircle className="w-3.5 h-3.5 fill-current" />
                 <span>Contact Admin on WhatsApp</span>

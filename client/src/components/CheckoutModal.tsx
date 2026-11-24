@@ -69,7 +69,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             particleCount: 120,
             spread: 70,
             origin: { y: 0.6 },
-            colors: ['#ea580c', '#fbbf24', '#38bdf8', '#10b981'],
+            colors: ['#00D0FE', '#38bdf8', '#0ea5e9', '#10b981'],
           });
 
           onKeyCreated({
@@ -107,7 +107,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
         className="dark-box relative w-full max-w-lg rounded-3xl bg-[#0f0e0d] border border-[#262320] shadow-2xl p-6 sm:p-8 max-h-[92vh] overflow-y-auto text-[#f5f2eb]"
       >
         {/* Ambient Top Glow */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#00D0FE]/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
@@ -130,7 +130,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
               />
               <div>
                 <h3 id="checkout-modal-title" className="text-xl font-extrabold tracking-tight text-white">
-                  Activate <span className="text-[#ea580c]">{plan.name}</span>
+                  Activate <span className="text-[#00D0FE]">{plan.name}</span>
                 </h3>
                 <p className="text-xs text-stone-400">Instant key delivery after payment • {plan.duration}</p>
               </div>
@@ -147,7 +147,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
               </div>
               <div className="text-right">
                 <span className="text-[11px] text-stone-400 uppercase font-semibold block tracking-wider">Validity</span>
-                <span className="text-xs font-bold text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-lg border border-orange-500/20 inline-block">
+                <span className="text-xs font-bold text-[#00D0FE] bg-[#00D0FE]/10 px-2.5 py-1 rounded-lg border border-[#00D0FE]/20 inline-block">
                   {plan.duration}
                 </span>
               </div>
@@ -200,7 +200,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
                   value={txHash}
                   onChange={(e) => setTxHash(e.target.value)}
                   placeholder="e.g. 429182749102"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#141312] border border-[#2b2724] focus:border-orange-500/50 text-stone-200 font-mono text-xs outline-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#141312] border border-[#2b2724] focus:border-[#00D0FE]/50 text-stone-200 font-mono text-xs outline-none"
                 />
               </div>
             </div>
@@ -208,7 +208,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             {/* Instant Verification CTA */}
             <button
               onClick={handleSimulatePayment}
-              className="w-full py-3.5 rounded-xl bg-[#ea580c] hover:bg-[#d94e0a] text-white font-extrabold text-sm tracking-wide shadow-xl shadow-orange-600/30 transition-all flex items-center justify-center gap-2 active:scale-[0.99]"
+              className="w-full py-3.5 rounded-xl bg-[#00D0FE] hover:bg-[#00b5de] text-slate-950 font-extrabold text-sm tracking-wide shadow-xl shadow-[#00D0FE]/25 transition-all flex items-center justify-center gap-2 active:scale-[0.99]"
             >
               <ShieldCheck className="w-4 h-4" />
               <span>Confirm Payment &amp; Issue API Key</span>
@@ -222,7 +222,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
 
         {step === 'verifying' && (
           <div className="py-12 text-center space-y-4">
-            <RotateCw className="w-12 h-12 text-[#ea580c] animate-spin mx-auto" />
+            <RotateCw className="w-12 h-12 text-[#00D0FE] animate-spin mx-auto" />
             <h3 className="text-lg font-bold font-mono text-white">Verifying Transaction...</h3>
             <p className="text-xs text-stone-400 max-w-sm mx-auto">
               Connecting with payment gateway node confirmations and provisioning your {plan.name} allowance.
@@ -241,7 +241,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
                 Payment Confirmed!
               </h3>
               <p className="text-xs text-stone-400 mt-1">
-                Your <strong className="text-[#ea580c]">{plan.name}</strong> is now live with full Anthropic compatibility.
+                Your <strong className="text-[#00D0FE]">{plan.name}</strong> is now live with full Anthropic compatibility.
               </p>
             </div>
 
@@ -264,7 +264,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
             </div>
 
             <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 text-[11px] text-stone-400 text-left font-mono">
-              💡 Instant Setup: <code className="text-orange-400 font-bold">npx opuszenpro</code> (or export ANTHROPIC_BASE_URL=https://api.opuszen.pro/v1)
+              💡 Instant Setup: <code className="text-[#00D0FE] font-bold">npx opuszenpro</code> (or export ANTHROPIC_BASE_URL=https://api.opuszen.pro/v1)
             </div>
 
             <button

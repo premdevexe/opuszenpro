@@ -21,12 +21,12 @@ export const CheckUsagePage: React.FC<CheckUsagePageProps> = ({
         
         {/* Header Hero */}
         <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 dark:text-orange-400 text-[11px] font-mono uppercase tracking-wider font-bold mb-4 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C] animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] text-[11px] font-mono uppercase tracking-wider font-bold mb-4 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D0FE] animate-pulse"></span>
             <span>DIAGNOSTIC TELEMETRY • REAL-TIME API SYNC</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-black text-stone-900 dark:text-white tracking-tight">
-            Key Status &amp; <span className="bg-gradient-to-r from-orange-600 to-amber-500 bg-clip-text text-transparent">Usage</span>
+            Key Status &amp; <span className="text-gradient-cyan">Usage</span>
           </h1>
           <p className="text-sm sm:text-base text-stone-600 dark:text-stone-400 mt-3 leading-relaxed max-w-2xl mx-auto">
             Real-time token quota telemetry, sliding 5-hour rolling windows, and multi-modal gateway metrics queried live via API.

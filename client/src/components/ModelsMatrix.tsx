@@ -114,7 +114,7 @@ export const ModelsMatrix: React.FC = () => {
           <span>Full Anthropic Model Lineup ({combinedModels.length} Models {isLive ? '• Auto-Synced' : ''})</span>
         </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-          Every Claude Model. <span className="text-gradient-orange">Zero Tier Gating</span>.
+          Every Claude Model. <span className="text-gradient-cyan">Zero Tier Gating</span>.
         </h2>
         <p className="text-base sm:text-lg text-slate-400 mt-4 leading-relaxed">
           Both 5× and 20× OpusZenPro plans unlock the complete Claude family on a per-request basis with identical low latency.

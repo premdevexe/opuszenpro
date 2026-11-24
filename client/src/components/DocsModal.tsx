@@ -60,8 +60,8 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
 
         {/* Content */}
         <div className="overflow-y-auto p-6 space-y-6">
-          <div className="rounded-xl border border-orange-500/20 bg-orange-500/5 p-4 text-xs font-mono text-slate-300">
-            <p className="font-semibold text-orange-400 text-sm mb-1">Standard Gateway URL</p>
+          <div className="rounded-xl border border-[#00D0FE]/20 bg-[#00D0FE]/5 p-4 text-xs font-mono text-slate-300">
+            <p className="font-semibold text-[#00D0FE] text-sm mb-1">Standard Gateway URL</p>
             <code className="text-white bg-dark-950 px-2 py-1 rounded border border-white/10">
               https://api.opuszen.pro/v1
             </code>
@@ -82,7 +82,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
               <div className="rounded-lg bg-dark-950 p-3 border border-white/5">
                 <span className="font-semibold text-slate-200 block">Does Claude Code work out of the box?</span>
                 <span className="mt-1 block">
-                  Yes! Simply run <code className="text-orange-400">npx opuszenpro</code> (or manually set <code className="text-orange-400">export ANTHROPIC_BASE_URL="https://api.opuszen.pro/v1"</code>) before launching <code className="text-slate-200">claude</code>.
+                  Yes! Simply run <code className="text-[#00D0FE]">npx opuszenpro</code> (or manually set <code className="text-[#00D0FE]">export ANTHROPIC_BASE_URL="https://api.opuszen.pro/v1"</code>) before launching <code className="text-slate-200">claude</code>.
                 </span>
               </div>
               <div className="rounded-lg bg-dark-950 p-3 border border-white/5">

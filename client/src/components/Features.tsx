@@ -69,7 +69,7 @@ export const Features: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                     style={{ transformOrigin: 'left center' }}
-                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-amber-500"
+                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-cyan-300"
                   ></motion.span>
                 </div>
                 <span className="w-12 shrink-0 text-right font-mono text-[11px] text-slate-300">$7.50</span>
@@ -84,7 +84,7 @@ export const Features: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                     style={{ transformOrigin: 'left center' }}
-                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-amber-500"
+                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-cyan-300"
                   ></motion.span>
                 </div>
                 <span className="w-12 shrink-0 text-right font-mono text-[11px] text-slate-300">$4.00</span>
@@ -99,7 +99,7 @@ export const Features: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                     style={{ transformOrigin: 'left center' }}
-                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-amber-500"
+                    className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-cyan-300"
                   ></motion.span>
                 </div>
                 <span className="w-12 shrink-0 text-right font-mono text-[11px] text-slate-300">$2.00</span>

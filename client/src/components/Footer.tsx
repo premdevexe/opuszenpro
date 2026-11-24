@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({
                 className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-contain shadow-sm"
               />
               <span className="text-[18px] font-bold tracking-tight text-white font-mono">
-                Opus<span className="text-brand-500">zen</span><span className="text-[#00D0FE]">pro</span>
+                Opus<span className="text-[#00D0FE]">ZenPro</span>
               </span>
             </div>
             <p className="max-w-sm text-xs leading-relaxed text-slate-400">

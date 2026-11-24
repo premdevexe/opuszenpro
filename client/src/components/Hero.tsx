@@ -64,8 +64,8 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Background Grid Veil as seen on opusmax.live */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="grid-veil absolute inset-0 opacity-40 [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]"></div>
-        {/* Dual Ambient Glow: Primary Brand Orange on left + Secondary Cyan (#00D0FE) on right */}
-        <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[400px] bg-brand-500/10 rounded-full blur-[130px] -z-10 pointer-events-none"></div>
+        {/* Dual Ambient Glow: Electric Cyan (#00D0FE) on center/left and right */}
+        <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[400px] bg-[#00D0FE]/15 rounded-full blur-[140px] -z-10 pointer-events-none"></div>
         <div className="absolute top-1/4 right-1/4 translate-x-1/4 -translate-y-1/4 w-[450px] h-[350px] bg-[#00D0FE]/12 rounded-full blur-[140px] -z-10 pointer-events-none"></div>
       </div>
 
@@ -124,7 +124,7 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="mt-9 flex items-center">
                 <button
                   onClick={onOpenRegister}
-                  className="w-full sm:w-auto inline-flex h-12 items-center justify-center gap-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 px-7 text-[15px] font-semibold text-white shadow-lg shadow-brand-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                  className="w-full sm:w-auto inline-flex h-12 items-center justify-center gap-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 px-7 text-[15px] font-bold text-slate-950 shadow-lg shadow-brand-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
                 >
                   <span>Get instant access</span>
                   <ArrowRight className="h-4 w-4" />
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({
                   className="absolute inset-0 opacity-40 group-hover:opacity-75 transition-opacity duration-500"
                   style={{
                     background:
-                      'radial-gradient(60% 55% at 65% 25%, rgba(249, 115, 22, 0.32), transparent 70%)',
+                      'radial-gradient(60% 55% at 65% 25%, rgba(0, 208, 254, 0.32), transparent 70%)',
                   }}
                 ></div>
               </div>

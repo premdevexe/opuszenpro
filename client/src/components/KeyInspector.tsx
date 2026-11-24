@@ -311,7 +311,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
               onChange={(e) => setInputKey(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleInspect()}
               placeholder="Paste your API key (e.g. sk-ant-opm-SZpYGY...)"
-              className="w-full pl-11 pr-16 py-3 rounded-2xl bg-white dark:bg-[#181716] border border-[#E8E3D9] dark:border-[#2E2C2A] text-stone-900 dark:text-white placeholder-stone-400 font-mono text-xs sm:text-sm outline-none focus:border-[#EA580C] focus:ring-2 focus:ring-orange-500/20 transition-all font-semibold"
+              className="w-full pl-11 pr-16 py-3 rounded-2xl bg-white dark:bg-[#181716] border border-[#E8E3D9] dark:border-[#2E2C2A] text-stone-900 dark:text-white placeholder-stone-400 font-mono text-xs sm:text-sm outline-none focus:border-[#00D0FE] focus:ring-2 focus:ring-[#00D0FE]/20 transition-all font-semibold"
             />
             <button
               type="button"
@@ -325,7 +325,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
           <button
             onClick={() => handleInspect()}
             disabled={loading}
-            className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-[#EA580C] hover:bg-[#D94E0A] disabled:opacity-50 text-white font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md shadow-orange-500/20 flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+            className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-[#00D0FE] hover:bg-[#00b5de] disabled:opacity-50 text-slate-950 font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md shadow-[#00D0FE]/25 flex items-center justify-center gap-2 shrink-0 cursor-pointer"
           >
             <RotateCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
             <span>{loading ? 'Fetching...' : 'Fetch Live API'}</span>
@@ -344,7 +344,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
       {/* SAFE INITIAL / EMPTY STATE */}
       {!keyData && !loading && !error && (
         <div className="rounded-3xl border border-[#E7E2D8] dark:border-[#262422] bg-white/50 dark:bg-[#121110]/50 p-8 sm:p-12 text-center shadow-sm">
-          <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 text-[#EA580C] flex items-center justify-center mx-auto mb-4">
+          <div className="w-12 h-12 rounded-2xl bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] flex items-center justify-center mx-auto mb-4">
             <Key className="w-6 h-6" />
           </div>
           <h3 className="text-base font-bold text-stone-900 dark:text-white mb-2">
@@ -373,7 +373,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
                     ? 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20'
                     : isPaused
                     ? 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20'
-                    : 'text-orange-600 dark:text-orange-400 bg-orange-500/10 border-orange-500/20'
+                    : 'text-[#00D0FE] bg-[#00D0FE]/10 border-[#00D0FE]/20'
                 }`}>
                   {isRevoked ? 'REVOKED API KEY' : isPaused ? 'PAUSED API KEY' : 'ACTIVE API KEY'}
                 </span>
@@ -397,7 +397,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
                   disabled={loading}
                   className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-[#E8E3D9] dark:border-[#262422] bg-stone-50 dark:bg-[#181716] hover:bg-stone-100 dark:hover:bg-[#201F1E] text-stone-700 dark:text-stone-300 text-xs font-semibold transition cursor-pointer"
                 >
-                  <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-[#EA580C]' : ''}`} />
+                  <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-[#00D0FE]' : ''}`} />
                   <span>Sync Live API</span>
                 </button>
 
@@ -532,7 +532,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-orange-500/10 border border-orange-500/20 text-[#EA580C] flex items-center justify-center font-bold">
+                <div className="w-8 h-8 rounded-full bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] flex items-center justify-center font-bold">
                   S
                 </div>
                 <h3 className="text-lg font-bold text-stone-900 dark:text-white">
@@ -691,7 +691,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
                 
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <div className="w-6 h-6 rounded-lg bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-[#EA580C]">
+                    <div className="w-6 h-6 rounded-lg bg-[#00D0FE]/15 border border-[#00D0FE]/30 flex items-center justify-center text-[#00D0FE]">
                       <Clock className="w-3.5 h-3.5" />
                     </div>
                     <h4 className="text-sm font-bold text-stone-900 dark:text-white">
@@ -754,7 +754,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
               <div className="mt-4 pt-3 border-t border-stone-200 dark:border-[#222120]">
                 <div className="flex justify-between text-[11px] font-mono text-stone-500 mb-1.5 font-bold">
                   <span className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00D0FE]"></span>
                     Continuous 5-Hour Window Cycle
                   </span>
                   <span>{cycleCompletedPercent}% cycle completed</span>
@@ -851,7 +851,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
           {/* 5. SUPPORTED MODELS ON THIS KEY */}
           <div className="p-6 rounded-3xl border border-[#E7E2D8] dark:border-[#262422] bg-white dark:bg-[#121110] shadow-sm">
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 text-[#EA580C] flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] flex items-center justify-center">
                 <Sparkles className="w-4 h-4" />
               </div>
               <h4 className="text-sm font-bold text-stone-900 dark:text-white">
@@ -876,7 +876,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
           <div className="rounded-3xl border border-[#E7E2D8] dark:border-[#262422] bg-white dark:bg-[#121110] overflow-hidden shadow-sm">
             <div className="px-6 py-4 border-b border-[#E8E3D9] dark:border-[#262422] flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 text-[#EA580C] flex items-center justify-center">
+                <div className="w-7 h-7 rounded-lg bg-[#00D0FE]/10 border border-[#00D0FE]/20 text-[#00D0FE] flex items-center justify-center">
                   <Layers className="w-4 h-4" />
                 </div>
                 <h4 className="text-sm font-bold text-stone-900 dark:text-white">
@@ -904,7 +904,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
                       <td className="px-6 py-3 text-stone-600 dark:text-stone-300">
                         {log.timestamp}
                       </td>
-                      <td className="px-6 py-3 font-bold text-[#EA580C]">
+                      <td className="px-6 py-3 font-bold text-[#00D0FE]">
                         {log.model}
                       </td>
                       <td className="px-6 py-3 text-center text-stone-400">
@@ -929,7 +929,7 @@ export const KeyInspector: React.FC<KeyInspectorProps> = ({
               className="w-full px-6 py-3.5 flex items-center justify-between text-xs font-mono font-bold text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition bg-stone-50 dark:bg-[#161514]"
             >
               <div className="flex items-center gap-2">
-                <Code2 className="w-4 h-4 text-[#EA580C]" />
+                <Code2 className="w-4 h-4 text-[#00D0FE]" />
                 <span>View Raw Upstream Response (JSON Payload)</span>
               </div>
               {showRawJson ? <ChevronUp className="w-4 h-4 text-stone-500" /> : <ChevronDown className="w-4 h-4 text-stone-500" />}

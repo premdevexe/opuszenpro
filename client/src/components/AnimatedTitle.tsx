@@ -70,7 +70,7 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
                     display: 'inline-block',
                     willChange: 'transform',
                   }}
-                  className={isHighlight ? 'text-gradient-orange' : undefined}
+                  className={isHighlight ? 'text-gradient-cyan' : undefined}
                 >
                   {word}&nbsp;
                 </motion.span>

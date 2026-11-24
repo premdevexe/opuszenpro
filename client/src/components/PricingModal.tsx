@@ -248,7 +248,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
               <div>
                 <h3 className="text-2xl font-black text-white">Your Key is Ready!</h3>
                 <p className="mt-2 text-sm text-stone-400">
-                  Your <strong className="text-[#EA580C]">{selectedTier.toUpperCase()} Key</strong> is active with full Anthropic compatibility.
+                  Your <strong className="text-[#00D0FE]">{selectedTier.toUpperCase()} Key</strong> is active with full Anthropic compatibility.
                 </p>
               </div>
 
@@ -283,7 +283,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
                 </button>
                 <button
                   onClick={onClose}
-                  className="rounded-xl bg-[#EA580C] hover:bg-[#D94E0A] px-6 py-2 text-sm font-bold text-white shadow-lg shadow-orange-600/30"
+                  className="rounded-xl bg-[#00D0FE] hover:bg-[#00b5de] px-6 py-2 text-sm font-bold text-slate-950 shadow-lg shadow-[#00D0FE]/25"
                 >
                   Done
                 </button>
@@ -301,7 +301,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
                       onClick={() => handleSelectTier(plan.tier)}
                       className={`cursor-pointer rounded-2xl border p-5 transition-all flex flex-col justify-between ${
                         isSelected
-                          ? 'border-[#EA580C] bg-orange-500/10 shadow-lg shadow-orange-600/15 ring-1 ring-[#EA580C]'
+                          ? 'border-[#00D0FE] bg-[#00D0FE]/10 shadow-lg shadow-[#00D0FE]/20 ring-1 ring-[#00D0FE]'
                           : 'border-[#262320] bg-[#141312] hover:border-white/20'
                       }`}
                     >
@@ -322,7 +322,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
                       <ul className="mt-4 space-y-1.5 text-xs text-stone-300">
                         {plan.features.slice(0, 3).map((f, i) => (
                           <li key={i} className="flex items-start gap-1.5">
-                            <Check className="w-3.5 h-3.5 text-[#EA580C] shrink-0 mt-0.5 stroke-[2.5]" />
+                            <Check className="w-3.5 h-3.5 text-[#00D0FE] shrink-0 mt-0.5 stroke-[2.5]" />
                             <span className="line-clamp-2">{f}</span>
                           </li>
                         ))}
