@@ -214,7 +214,7 @@ export const PricingModal: React.FC<PricingModalProps> = ({
               alt="OpusZenPro Logo"
               width="44"
               height="44"
-              className="h-11 w-11 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
+              className="h-11 w-11 rounded-full object-contain shadow-sm"
             />
             <div>
               <h2 id="pricing-modal-title" className="text-lg font-bold text-white">OpusZenPro Plans &amp; Activation</h2>

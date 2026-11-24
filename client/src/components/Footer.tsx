@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({
                 alt="OpusZenPro Logo"
                 width="44"
                 height="44"
-                className="h-10 w-10 sm:h-11 sm:w-11 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
+                className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-contain shadow-sm"
               />
               <span className="text-[18px] font-bold tracking-tight text-white font-mono">
                 Opus<span className="text-brand-500">zenpro</span>

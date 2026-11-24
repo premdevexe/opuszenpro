@@ -126,7 +126,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ tier, isOpen = tru
                 alt="OpusZenPro Logo"
                 width="56"
                 height="56"
-                className="w-14 h-14 object-contain drop-shadow-[0_2px_12px_rgba(234,88,12,0.35)]"
+                className="w-14 h-14 rounded-full object-contain shadow-sm"
               />
               <div>
                 <h3 id="checkout-modal-title" className="text-xl font-extrabold tracking-tight text-white">

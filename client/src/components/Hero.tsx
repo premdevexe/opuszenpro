@@ -69,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10 relative">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-12">
-          
+
           {/* Left Column - Copy & CTA */}
           <div className="lg:col-span-7">
             {/* Live Release Badge */}
@@ -169,7 +169,7 @@ export const Hero: React.FC<HeroProps> = ({
                     <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
                   </div>
                   <span className="ml-2 font-mono text-[11px] text-slate-400">opuslive</span>
-                  
+
                   <div className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-400">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     connected
@@ -209,7 +209,7 @@ export const Hero: React.FC<HeroProps> = ({
                     </p>
                     <p className="text-slate-400 flex items-center gap-2">
                       <span className="text-brand-400">⚡</span>
-                      <span>5-hour rolling allowance: 25,000,000 tokens active</span>
+                      <span>5-hour rolling allowance: 20,000,000 tokens active</span>
                     </p>
                   </div>
                 </div>

@@ -42,7 +42,7 @@ export const DocsModal: React.FC<DocsModalProps> = ({ isOpen, onClose }) => {
               alt="OpusZenPro Logo"
               width="40"
               height="40"
-              className="h-10 w-10 object-contain drop-shadow-[0_2px_8px_rgba(234,88,12,0.3)]"
+              className="h-10 w-10 rounded-full object-contain shadow-sm"
             />
             <div>
               <h2 id="docs-modal-title" className="text-lg font-bold text-white">OpusZenPro Documentation &amp; Setup</h2>
