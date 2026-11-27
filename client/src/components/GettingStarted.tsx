@@ -104,7 +104,7 @@ export const GettingStarted: React.FC<GettingStartedProps> = ({
                 Pay with UPI or Cards
               </h3>
               <p className="mt-2 text-[14px] leading-relaxed text-slate-400">
-                Plans start from ₹1,300 in INR via any UPI app (GPay, PhonePe, Paytm, BHIM) or cards. Your
+                Plans start from ₹1,499 in INR via any UPI app (GPay, PhonePe, Paytm, BHIM) or cards. Your
                 key is delivered immediately after payment.
               </p>
             </div>

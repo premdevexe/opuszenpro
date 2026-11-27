@@ -134,7 +134,7 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Pricing subtext */}
               <p className="mt-5 text-[13px] text-slate-400 font-mono flex items-start gap-2">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
-                <span>Plans from ₹1,300 (INR) · key delivered instantly · no Anthropic approval needed</span>
+                <span>Plans from ₹1,499 (INR) · key delivered instantly · no Anthropic approval needed</span>
               </p>
             </motion.div>
           </div>

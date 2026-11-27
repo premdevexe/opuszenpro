@@ -24,7 +24,7 @@ const MODAL_PLANS: {
     tier: '5x',
     title: '5x Plan',
     badge: 'Standard Dev',
-    priceInr: '₹4,999',
+    priceInr: '₹5,699',
     duration: '30 days',
     features: [
       '5× the usage of official Claude Pro',
@@ -39,7 +39,7 @@ const MODAL_PLANS: {
     tier: '20x',
     title: '20x Plan',
     badge: 'Most Popular',
-    priceInr: '₹6,999',
+    priceInr: '₹6,499',
     duration: '30 days',
     features: [
       '20× the usage of official Claude Pro',
@@ -55,7 +55,7 @@ const MODAL_PLANS: {
     tier: '5x_trial',
     title: '5x Plan 1 Week Trial',
     badge: '1 Week Trial',
-    priceInr: '₹1,300',
+    priceInr: '₹1,499',
     duration: '7 days',
     features: [
       '5× the usage of official Claude Pro',

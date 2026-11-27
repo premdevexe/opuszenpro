@@ -52,14 +52,14 @@ router.get('/logs', async (req, res) => {
 router.post('/orders/create', async (req, res) => {
   try {
     const tier = normalizeTier(req.body?.tier);
-    let amount = 30.00;
-    let inrAmount = 4999;
+    let amount = 35.00;
+    let inrAmount = 5699;
     if (tier === '20x') {
       amount = 50.00;
-      inrAmount = 6999;
+      inrAmount = 6499;
     } else if (tier === '5x_trial') {
-      amount = 15.00;
-      inrAmount = 1300;
+      amount = 18.00;
+      inrAmount = 1499;
     }
 
     const orderId = `ord_${Math.random().toString(36).substr(2, 9)}`;

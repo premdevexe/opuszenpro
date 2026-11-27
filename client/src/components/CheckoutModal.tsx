@@ -14,9 +14,9 @@ interface CheckoutModalProps {
 }
 
 const PLAN_META: Record<PlanTier, { name: string; priceInr: number; duration: string }> = {
-  '5x': { name: '5x Plan', priceInr: 4999, duration: '30 days' },
-  '20x': { name: '20x Plan', priceInr: 6999, duration: '30 days' },
-  '5x_trial': { name: '5x Plan 1 Week Trial', priceInr: 1300, duration: '7 days' },
+  '5x': { name: '5x Plan', priceInr: 5699, duration: '30 days' },
+  '20x': { name: '20x Plan', priceInr: 6499, duration: '30 days' },
+  '5x_trial': { name: '5x Plan 1 Week Trial', priceInr: 1499, duration: '7 days' },
   'custom': { name: 'Custom Enterprise', priceInr: 9999, duration: 'Custom' },
 };
 

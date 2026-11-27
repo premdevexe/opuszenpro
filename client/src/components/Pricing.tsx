@@ -43,7 +43,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
 
             <div className="mb-2 flex items-baseline gap-1.5 flex-wrap">
               <span className="text-4xl font-black tracking-tight text-[#1C1917] dark:text-white">
-                ₹4,999
+                ₹5,699
               </span>
               <span className="text-xs font-semibold uppercase text-[#78716C] dark:text-[#A8A29E]">
                 INR / month
@@ -103,7 +103,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
 
             <div className="mb-2 flex items-baseline gap-1.5 flex-wrap">
               <span className="text-4xl font-black tracking-tight text-white">
-                ₹6,999
+                ₹6,499
               </span>
               <span className="text-xs font-semibold uppercase text-[#A8A29E]">
                 INR / month
@@ -162,7 +162,7 @@ export const Pricing: React.FC<PricingProps> = ({ onSelectPlan }) => {
 
             <div className="mb-2 flex items-baseline gap-1.5 flex-wrap">
               <span className="text-4xl font-black tracking-tight text-[#1C1917] dark:text-white">
-                ₹1,300
+                ₹1,499
               </span>
               <span className="text-xs font-semibold uppercase text-[#78716C] dark:text-[#A8A29E]">
                 INR / 1 week
